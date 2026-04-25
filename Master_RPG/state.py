@@ -1,17 +1,11 @@
-from typing import Annotated, TypedDict, List, Dict, Any, Optional
-import operator
-
-# Reducer functions to accumulate lists in the state
-def add_messages(existing: List[dict], new: List[dict]) -> List[dict]:
-    if new is None:
-        return existing
-    return existing + new
+from typing import TypedDict, List, Dict, Any, Optional
 
 class GameState(TypedDict):
     # Core Game Loop
     session_id: str
-    messages: Annotated[List[dict], add_messages] # History of the game (role, content)
+    messages: List[dict] # History of the game (role, content)
     current_input: str # User's latest action
+    turn_count: int # Tracks how many actions the player has taken
     
     # Character Info
     char_name: str
@@ -20,6 +14,7 @@ class GameState(TypedDict):
     # Game Context
     current_location: str
     active_npcs: dict # ID -> NPC details
+    interacting_npc: Optional[str] # Name or ID of the NPC currently being talked to
     
     # Hidden Plots (Roteirista)
     world_lore: str

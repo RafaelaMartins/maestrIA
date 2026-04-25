@@ -5,10 +5,11 @@ import json
 import re
 
 # Import agents
-from agents.roteirista import roteirista_node
-from agents.cenografo import cenografo_node
 from agents.npc_creator import npc_creator_node
+from agents.npc_actor import npc_actor_node
 from agents.evaluators import avaliador_acoes_node, avaliador_testes_node, mestre_geral_node
+from agents.roteirista import roteirista_node, world_updater_node
+from agents.cenografo import cenografo_node
 
 def orquestrador_router(state: GameState) -> GameState:
     """
@@ -18,6 +19,12 @@ def orquestrador_router(state: GameState) -> GameState:
     if not state.get("current_input"):
         return state
         
+    if state.get("current_input") == "INTRO_START":
+        print("--> [Orquestrador] Iniciando aventura via Cenógrafo...")
+        state["requires_roll"] = False
+        state["next_node"] = "cenografo"
+        return state
+        
     print("--> [Orquestrador] Analisando intenção do jogador...")
     llm = get_llm()
     
@@ -25,11 +32,29 @@ def orquestrador_router(state: GameState) -> GameState:
     Você é o Orquestrador do RPG.
     Ação do jogador: "{state.get('current_input')}"
     
-    A ação requer um teste de dados (ex: atacar, pular, mentir) ou é uma ação narrativa simples (ex: olhar, andar, falar com alguém)?
+    REGRAS DO SISTEMA (Tormenta Adaptado - D10):
+    1. Determinar Nível da Tarefa:
+       - Tarefa Fácil: CD 5
+       - Tarefa Média: CD 7 ou 8
+       - Tarefa Difícil: CD 9 ou 10
+    2. Determinar a Perícia Relevante:
+       - Lábia / Persuasão: Para tirar informações, mentir, convencer.
+       - Adivinhação: Para ler mentes e detectar enganos.
+       - Armas Brancas: Para lutar com espadas, machados, etc.
+       - Conhecimento de X: Para responder perguntas.
+       - Outras aplicáveis conforme o bom senso.
+    
+    PERGUNTE A SI MESMO:
+    1. O jogador está falando EM VOZ ALTA com um NPC (ex: "Olá taverneiro" ou usando aspas "")? Se sim, is_dialogue = true.
+    2. O jogador está declarando uma INTENÇÃO MECÂNICA ao mestre (ex: "Quero usar persuasão", "Faço um teste de força")? Se sim, ISSO NÃO É DIÁLOGO. is_dialogue = false, requires_roll = true.
+    3. É apenas uma ação de exploração simples sem dados?
+    
     Retorne APENAS um JSON:
     {{
+        "is_dialogue": true/false,
+        "npc_name": "Nome do NPC se houver, ou vazio",
         "requires_roll": true/false,
-        "skill": "Perícia se precisar",
+        "skill": "Perícia se precisar de dado",
         "dc": 10
     }}
     """
@@ -40,7 +65,24 @@ def orquestrador_router(state: GameState) -> GameState:
         json_match = re.search(r"\{.*\}", response.content, re.DOTALL)
         if json_match:
             data = json.loads(json_match.group(0))
-            if data.get("requires_roll"):
+            if data.get("is_dialogue") and data.get("npc_name"):
+                state["interacting_npc"] = data.get("npc_name")
+                state["requires_roll"] = False
+                
+                # Check if NPC exists, if not route to creator first
+                npc_exists = False
+                if "active_npcs" in state:
+                    for npc_id, npc_data in state["active_npcs"].items():
+                        if npc_data.get("nome", "").lower() == state["interacting_npc"].lower():
+                            npc_exists = True
+                            break
+                            
+                if not npc_exists:
+                    state["next_node"] = "npc_creator" # Creator will create and route to actor
+                else:
+                    state["next_node"] = "npc_actor"
+                    
+            elif data.get("requires_roll"):
                 state["requires_roll"] = True
                 state["roll_details"] = {"skill": data.get("skill", "Geral"), "dc": data.get("dc", 10)}
                 state["next_node"] = "avaliador_testes"
@@ -61,6 +103,12 @@ def router_condition(state: GameState) -> str:
         return END
     return node
 
+def finalize_turn(state: GameState) -> str:
+    # Agente do Mundo: Atualiza o mundo a cada 5 turnos
+    if state.get("turn_count", 0) > 0 and state.get("turn_count", 0) % 5 == 0:
+        return "world_updater"
+    return END
+
 def build_graph():
     builder = StateGraph(GameState)
     
@@ -72,21 +120,25 @@ def build_graph():
     builder.add_node("cenografo", cenografo_node)
     builder.add_node("mestre_geral", mestre_geral_node)
     builder.add_node("npc_creator", npc_creator_node)
+    builder.add_node("npc_actor", npc_actor_node)
+    builder.add_node("world_updater", world_updater_node)
     
-    # Fluxo Base: Todo turno começa no orquestrador (se houver input)
-    builder.set_entry_point("roteirista") # O roteirista roda primeiro para setup inicial
+    # Fluxo Base
+    builder.set_entry_point("roteirista")
     
-    # Do roteirista, vai para o orquestrador para processar a ação
     builder.add_edge("roteirista", "orquestrador")
-    
-    # Do orquestrador, usa roteamento condicional
     builder.add_conditional_edges("orquestrador", router_condition)
     
-    # As ações terminam no END para devolver resposta ao usuário no Streamlit
-    builder.add_edge("avaliador_acoes", END)
-    builder.add_edge("avaliador_testes", END)
-    builder.add_edge("cenografo", END)
-    builder.add_edge("mestre_geral", END)
-    builder.add_edge("npc_creator", END)
+    # Routing out of creation nodes
+    builder.add_edge("npc_creator", "npc_actor") # NPC creator must go to Actor
+    
+    # As ações terminam no conditional edge para atualizar o mundo
+    builder.add_conditional_edges("avaliador_acoes", finalize_turn)
+    builder.add_conditional_edges("avaliador_testes", finalize_turn)
+    builder.add_conditional_edges("cenografo", finalize_turn)
+    builder.add_conditional_edges("mestre_geral", finalize_turn)
+    builder.add_conditional_edges("npc_actor", finalize_turn)
+    
+    builder.add_edge("world_updater", END)
     
     return builder.compile()
