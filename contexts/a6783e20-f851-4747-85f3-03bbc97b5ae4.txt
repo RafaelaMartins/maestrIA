@@ -1,0 +1,23 @@
+[SESSION_CREATED_AT:2025-11-21T17:00:30.884008]
+Mestre: "A sombra dos montes Enarion se estende por um céu escuro, encharcado de humidade e suspensão. O cheiro forte de chumbo e febre impregna a atmosfera, assombrando o ar com roncos de ferro fundido e rápidas trovoadas. A visibilidade é mínima, apenas um fio fino de luz que penetra através dos muros escondidos nas encostas do monte.
+
+Lá dentro, no fundo da caverna, o Findariel sente-se em volta de um fogo brulhante, seu corpo coberto de roupas escassas e enegrecidas por anos de suja e fumaça. Ao redor, se espalha uma espécie de rumor, acompanhado pelo suspiro frio das pedras.
+
+Sobre o alto do monte, é possível ouvir o clamor de guerras antigas, com as vozes dos mortos que parecem se manifestar no ar. Aparece um homem velho, vestido de couro, com uma face caída e olhos frios que parecem penetrar diretamente até o seu espírito. O homem segura uma espada em sua mão, e os seus olhos focam no Findariel.
+
+O mundo está em guerra, as forças sobrenaturais estão ativas, e a única maneira de sobreviver é encontrar alianças e escolher bem. O que você faz?"
+
+O que você faz?
+FICHA_CARREGADA: Findariel — {'FOR': 0, 'DES': 2, 'CON': 0, 'INT': 0, 'SAB': 2, 'CAR': 2}
+Jogador (Findariel): Tento buscar aliados
+REFEREE_DECISION: {'requires_roll': True, 'attr': 'DES', 'skill': 'Teste Genérico', 'dc': 12, 'reason': 'Ação explícita de teste.'}
+FICHA_CARREGADA: Findariel — {'FOR': 0, 'DES': 2, 'CON': 0, 'INT': 0, 'SAB': 2, 'CAR': 2}
+Jogador (Findariel): Tento buscar aliados
+REFEREE_DECISION: {'requires_roll': True, 'attr': 'DES', 'skill': 'Teste Genérico', 'dc': 12, 'reason': 'Ação explícita de teste.'}
+FICHA_CARREGADA: Findariel — {'FOR': 0, 'DES': 2, 'CON': 0, 'INT': 0, 'SAB': 2, 'CAR': 2}
+RESULTADO_TESTE: Rolou 16 + mod -4 = 12 contra DC 12 → success
+RESULTADO_TESTE_DETALHADO: Rolou 16 + mod -4 = 12 contra DC 12 → success
+Narrador: Findariel age e o mundo responde — algo muda de forma intensa.
+
+O que você faz agora?
+FICHA_CARREGADA: Findariel — {'FOR': 0, 'DES': 2, 'CON': 0, 'INT': 0, 'SAB': 2, 'CAR': 2}

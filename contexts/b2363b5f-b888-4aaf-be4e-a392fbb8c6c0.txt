@@ -1,0 +1,32 @@
+[SESSION_CREATED_AT:2025-11-21T18:46:04.796528]
+Mestre: Apresentando um mundo sombrio, cinético e sensorial. A atmosfera é pesada, cheia de tensão, com ruidos assustadores e cheiros desagradáveis que indicam ruínas e desolaturação ao redor. O clima é frio, inverno perpétuo, com neblina cobrindo as montanhas distantes. Rumores falam de forças sobrenaturais espalhando medo através da região e de uma guerra entre três poderosos clãs.
+
+Você está em meio à uma paisagem desolada, coberta por escombros e ruínas antigas. O solo é fangoso e as montanhas estão cobertas por neblina, que lhe proporciona pouca visibilidade. Alguns troços de um velho caminho antigo são visíveis entre os escombros, mas nenhuma trilha ou sinal de vida humana está em evidência. À distância, você pode ouvir barulhos estranhos e inquietantes, possivelmente movimentos de animais selvagens ou uma luta entre os clãs.
+
+Ao seu lado, existe um homem velho e machucado, sentado no chão com uma espada quebrada. Ele parece feroz, mas desesperado. Aparentemente foi enfermo e agora está sem forças para se defender ou se mover. Sua face é marcada pela dor e pelo sofrimento. É claro que ele necessita de ajuda.
+
+O que você faz?
+FICHA_CARREGADA: Findariel — {'FOR': 0, 'DES': 2, 'CON': 0, 'INT': 0, 'SAB': 2, 'CAR': 2}
+Jogador (Findariel): Ajudo ele
+REFEREE_DECISION: {'requires_roll': False, 'attr': None, 'skill': None, 'dc': None, 'reason': 'Ação comum, sem teste necessário.'}
+Mestre: Findariel age e o mundo responde — algo muda de forma intensa.
+
+O que você faz agora?
+FICHA_CARREGADA: Findariel — {'FOR': 0, 'DES': 2, 'CON': 0, 'INT': 0, 'SAB': 2, 'CAR': 2}
+Jogador (Findariel): Ajudo ele
+REFEREE_DECISION: {'requires_roll': False, 'attr': None, 'skill': None, 'dc': None, 'reason': 'Ação comum, sem teste necessário.'}
+Mestre: Findariel age e o mundo responde — algo muda de forma intensa.
+
+O que você faz agora?
+FICHA_CARREGADA: Findariel — {'FOR': 0, 'DES': 2, 'CON': 0, 'INT': 0, 'SAB': 2, 'CAR': 2}
+Jogador (Findariel): Ajudo ele
+REFEREE_DECISION: {'requires_roll': False, 'attr': None, 'skill': None, 'dc': None, 'reason': 'Ação comum, sem teste necessário.'}
+Mestre: Findariel age e o mundo responde — algo muda de forma intensa.
+
+O que você faz agora?
+FICHA_CARREGADA: Findariel — {'FOR': 0, 'DES': 2, 'CON': 0, 'INT': 0, 'SAB': 2, 'CAR': 2}
+Jogador (Findariel): Ajudo ele
+REFEREE_DECISION: {'requires_roll': False, 'attr': None, 'skill': None, 'dc': None, 'reason': 'Ação comum, sem teste necessário.'}
+Mestre: Findariel age e o mundo responde — algo muda de forma intensa.
+
+O que você faz agora?

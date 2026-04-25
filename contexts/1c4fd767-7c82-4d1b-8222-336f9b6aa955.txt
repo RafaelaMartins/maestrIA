@@ -1,0 +1,7 @@
+[SESSION_CREATED_AT:2025-11-21T19:31:57.908032]
+Mestre: "No fim de uma estrada sombria, então um deserto irradiando tensão e ruínas em todas as direções. O clima é hostil, ventos agressivos e neblina cobrindo o horizonte. Por ali, a murmura da natureza se mistura com sons de um conflito súbito e inesperado - clamores de batalha e ruidos de espada against spade. Lá, sob as ruínas maciças de uma fortaleza abandonada, um homem sentado com o martelo sobre o joelho é interrompido pela chegada de uma figura fantasmagórica - um misterioso caçador cladístico a cavalo, olhando para ele com um olhar penetrantemente desafiador. Em sua mão, a figura segura um selim chamado Lorgar e a tensão entre eles é tangível. Agora, o personagem Findariel se encontra numa situação crítica - será capaz de defender seu martelo ou aceitar o desafio do caçador estranho? O que você faz?"
+
+O que você faz?
+FICHA_CARREGADA: Findariel — {'FOR': 0, 'DES': 2, 'CON': 0, 'INT': 0, 'SAB': 2, 'CAR': 2}
+Jogador (Findariel): Tento persuadir o caçador 
+REFEREE_DECISION: {'requires_roll': True, 'attr': 'CAR', 'skill': 'Persuasão', 'dc': 12, 'reason': 'Ação detectada: Persuasão.'}

@@ -1,0 +1,12 @@
+[SESSION_CREATED_AT:2025-11-19T12:55:45.587631]
+Narrador: Em um mundo onde a luz de um dia esconde a velha alma, em uma cidade olhando para o futuro, no coração do bairro das ruas estreitas, se espalha o silêncio. O vento susurra histórias anteriores, enquanto as luzes das janelas se apagam um por um, revelando sombras escuras e olhar-se nos olhos dos homens que caminham entre mortais.
+
+O ar está cheio de promessas e desejos, mas também de medo e incerteza. O céu, um vasto abismo preto, parece ameaçar, enquanto as torres altas se erguem como sinalizadores do destino próximo.
+
+De repente, uma sombra se estende pelo rio que corta a cidade, flutuando sobre o palco de estratégias e escolhas. Nesse momento, um homem, com olhos cintilantes como o fogo na noite, surge da escuridão e vê você, Jogador.
+
+Ele está a uma distância segura, observando as multidões que se reunem no centro da praça, esperando para o que vir. Ele sorri, percebendo que você está ao seu lado, um inimigo ou aliado do destino.
+
+"O que deseja, jogador?" ele pede de voz baixa e misteriosa, suas palavras sussurradas sobre o ar como se tivessem sido escutadas por todos.
+Jogador: Tentar convencer o guarda
+Mestre: Solicita teste de Persuasão (CAR) contra DC 12.

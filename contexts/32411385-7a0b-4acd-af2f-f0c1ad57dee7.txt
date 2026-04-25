@@ -1,0 +1,1 @@
+FICHA_CARREGADA: É Permitido Reproduzir Esta Página Para Uso Pessoal — {'FOR': 0, 'DES': 2, 'CON': 0, 'INT': 0, 'SAB': 2, 'CAR': 2}

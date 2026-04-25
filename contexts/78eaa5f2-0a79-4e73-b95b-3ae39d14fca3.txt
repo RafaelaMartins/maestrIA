@@ -1,0 +1,33 @@
+[SESSION_CREATED_AT:2025-11-21T17:57:09.371419]
+Mestre: "As nebulosas cinzentas enlouqueciam no céu, abrigando um mundo de ruínas e magia. Um clima frio e úmido envolvia uma cidade escondida entre as montanhas, com rua estreita e edifícios abandonados. Lá, encontrava-se Findariel, sentado em frente a uma caverna onde o silêncio era interrompido pelo murmúrio de água subterrânea.
+
+Suddenly, from the distance, the sound of hooves echoed through the valley, followed by the faint glimmer of torches. Emerging from the mist was a hooded figure astride a massive steed, its eyes burning with an unnatural light. This stranger approached Findariel's hiding place, his intentions unclear but tension filling the air."
+
+"O que você faz?"
+
+O que você faz?
+FICHA_CARREGADA: Findariel — {'FOR': 0, 'DES': 2, 'CON': 0, 'INT': 0, 'SAB': 2, 'CAR': 2}
+Jogador (Findariel): Pergunto para o estranho quem é ele
+REFEREE_DECISION: {'requires_roll': False, 'attr': None, 'skill': None, 'dc': None, 'reason': 'Ação comum, sem teste necessário.'}
+Mestre: As chamas dos torches se espalharam por toda a caverna, iluminando o rosto do estranho e revelando olhos vermelhos profundos. A luz se refletiu nas armaduras escuras que ele usava e na sela vermelha de sua montaria. O estranho não respondeu à pergunta de Findariel, mas apenas segurou um olhar frio e desafiador. O vento começou a soprar forte, transportando poeira e ruído através da caverna, aumentando a tensão. Um sentimento de ameaça se espalhou entre os personagens presentes.
+"O que você faz agora?"
+
+O que você faz agora?
+FICHA_CARREGADA: Findariel — {'FOR': 0, 'DES': 2, 'CON': 0, 'INT': 0, 'SAB': 2, 'CAR': 2}
+Jogador (Findariel): Pergunto para o estranho quem é ele
+REFEREE_DECISION: {'requires_roll': False, 'attr': None, 'skill': None, 'dc': None, 'reason': 'Ação comum, sem teste necessário.'}
+Mestre: Findariel age e o mundo responde — algo muda de forma intensa.
+
+O que você faz agora?
+FICHA_CARREGADA: Findariel — {'FOR': 0, 'DES': 2, 'CON': 0, 'INT': 0, 'SAB': 2, 'CAR': 2}
+Jogador (Findariel): vou agredir ele
+REFEREE_DECISION: {'requires_roll': False, 'attr': None, 'skill': None, 'dc': None, 'reason': 'Ação comum, sem teste necessário.'}
+Mestre: Findariel age e o mundo responde — algo muda de forma intensa.
+
+O que você faz agora?
+FICHA_CARREGADA: Findariel — {'FOR': 0, 'DES': 2, 'CON': 0, 'INT': 0, 'SAB': 2, 'CAR': 2}
+Jogador (Findariel): vou agredir ele
+REFEREE_DECISION: {'requires_roll': False, 'attr': None, 'skill': None, 'dc': None, 'reason': 'Ação comum, sem teste necessário.'}
+Mestre: Findariel age e o mundo responde — algo muda de forma intensa.
+
+O que você faz agora?

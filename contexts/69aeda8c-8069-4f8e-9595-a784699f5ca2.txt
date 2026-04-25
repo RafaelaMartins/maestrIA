@@ -1,0 +1,14 @@
+[SESSION_CREATED_AT:2025-11-19T20:44:55.364785]
+Mestre: Findariel emerge entre escombros. Uma mulher observa com desdém; um homem abana um dispositivo que sussurra. Findariel sente o peso da escolha: aproximar-se do dispositivo ou esconder-se. O que você faz?
+FICHA_CARREGADA: Findariel — {'FOR': 0, 'DES': 2, 'CON': 0, 'INT': 0, 'SAB': 2, 'CAR': 2}
+Jogador (Findariel): aproximo do dispositivo
+REFEREE_DECISION: {'requires_roll': False, 'attr': None, 'skill': None, 'dc': None, 'reason': 'Ação comum, sem teste necessário.'}
+Mestre: Findariel age, e o ambiente reage. Algo mudou ao redor.
+
+O que você faz agora?
+FICHA_CARREGADA: Findariel — {'FOR': 0, 'DES': 2, 'CON': 0, 'INT': 0, 'SAB': 2, 'CAR': 2}
+Jogador (Findariel): aproximo do dispositivo
+REFEREE_DECISION: {'requires_roll': False, 'attr': None, 'skill': None, 'dc': None, 'reason': 'Ação comum, sem teste necessário.'}
+Mestre: Findariel age, e o ambiente reage. Algo mudou ao redor.
+
+O que você faz agora?

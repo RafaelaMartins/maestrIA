@@ -1,0 +1,19 @@
+[SESSION_CREATED_AT:2025-11-19T16:01:31.005174]
+Mestre: Nesta vasta região escorregadia, o brilho das luzes escura atraindo seu coração, um homem se movia silenciosamente, os passos suaves no solo rochoso. Ele era um viajante, um explorador de mundos desconhecidos, e nesse momento, sua jornada encontrava seu destino mais próximo. Através dos muros de pedra que o cercavam, um som alegre ecoava, como uma nota estranha no silêncio das cavernas.
+
+O homem se aproximava da entrada dos túneis, seus pés pesados no chão do solo. Sua respiração era regular e profunda, refletindo sua determinação. Ele sabia que estava prestes a descobrir algo imenso, algo que poderia mudar suas vidas para sempre.
+
+De repente, um som estranho ecoou nas entradas dos túneis, uma voz alta e brisa, sussurrando palavras desconhecidas. O homem se virou, seus olhos fixos na entrada das cavernas. Sua mente estava pronta para a descoberta que o esperava.
+
+O som aumentou de intensidade, e a voz se tornou mais clara, capaz de ser ouvida com mais precisão. "Ei, o que você faz?" perguntou o homem, seus olhos deslizando pelo interior das cavernas até encontrar a fonte do som.
+
+Ele se aproximou, sua respiração mais lenta e mais profunda. Sua mira estava pega no centro de uma grande criela de pedra, um dispositivo que parecia controlar a entrada das cavernas. Ele sabia que precisava atingir o centro da criela para desativá-la, permitindo que as cavernas se abrissem.
+
+O homem agarrou a mira com firmeza, seus dedos tremerem de prazer e ansiedade. Ele estava prestes a fazer algo que mudaria seu destino eternamente. Ele sabia que havia uma escolha importante antes dele.
+Jogador: Tento atingir o centro da criela para desativá-la
+REFEREE_DECISION: {'requires_roll': True, 'attr': 'DES', 'skill': 'Teste Genérico', 'dc': 12, 'reason': 'Ação explícita de teste.'}
+Jogador: Tento atingir o centro da criela para desativá-la
+REFEREE_DECISION: {'requires_roll': True, 'attr': 'DES', 'skill': 'Teste Genérico', 'dc': 12, 'reason': 'Ação explícita de teste.'}
+RESULTADO_TESTE: Rolou 11 + mod -4 = 7 contra DC 12 → fail
+RESULTADO_TESTE_DETALHADO: Rolou 11 + mod -4 = 7 contra DC 12 → fail
+Narrador: Não atingiu o centro da criela.

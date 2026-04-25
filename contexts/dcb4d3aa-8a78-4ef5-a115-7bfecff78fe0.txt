@@ -1,0 +1,28 @@
+[SESSION_CREATED_AT:2025-11-19T15:39:31.206187]
+Mestre: Entre em cena com um grupo de refugiados humanos que vivem nas ruínas da cidade anteriormente habitada pelos humanos. A atmosfera é sombria e tensa, com as ruínas estendendo-se ao longo do povo sem vida. 
+
+Na escuridão, você ouve o barulho de uma voz baixa, seguida por um som de passos ágeis. O personagem entra em uma rua deserta, cercado por estruturas destruídas e edifícios abandonados.
+
+Ele se aproxima do silêncio da cidade, olhando para as ruínas com uma mistura de tristeza e desespero. 
+
+O NOME DO PERSONAGEM é:
+
+**Kael**
+
+**Atributos:**
+
+* FOR: 4
+* DES: -2
+* CON: -1
+* INT: 0
+* SAB: 3
+* CAR: 2
+
+**Instruções para a Introdução:**
+
+- Crie um cenário sombrio e cinético.
+- A história deve ser continuada nos próximos turnos.
+- Mostre dois NPCs relevantes com personalidades claras.
+- Use o NOME DO PERSONAGEM sempre.
+- Nunca chame o jogador de jogador, aventureiro genérico, etc.
+- No final, pergunte: "O que você faz?"

@@ -1,0 +1,22 @@
+[SESSION_CREATED_AT:2025-11-17T20:55:50.118109]
+Narrador: **INTrodução**
+
+Em um mundo onde a luz da escuridão se estende em todas as esquinas, onde os sonhos são cortados por silêncio e onde o vento susurra segredos antigos... 
+
+Você é o protagonista de uma aventura épica, que estará mergulhado em uma realidade onde a natureza humana está sob ataque. A tecnologia avançada, a magia misteriosa e os seres criados por humanos são apenas alguns dos elementos que você irá enfrentar no caminho para descobrir o propósito do seu tempo.
+
+A cidade de Nova Esperança, um lugar onde o progresso e a civilização se encontram, está em perigo. As sombras do passado começam a se estender ao redor da cidade, ameaçando destruir tudo o que você ama.
+
+**Lugar Inicial**
+
+Sua aventura começa em uma das ruas mais movimentadas da cidade, onde a luz da chuva escaldante ilumina as ruas escuras. Você está parado à beira de um portão, olhando para dentro de um cais iluminado por lasers que cortam o vento gelido.
+
+De repente, você ouve uma voz baixa e sombria, vinda do portão: "Está aqui, agora?"
+
+Você se volta ao ver um homem escondido atrás de uma pilha de pedras. Ele não tem olhos, mas você nota que tem um braço longo e flexível, com um dispositivo que parece ser um cintilante.
+
+**Pergunta para o jogador**
+
+Qual é o nome do homem?
+
+(Responda: "O senhor que está afastado da beira do portão.")

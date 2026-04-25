@@ -1,0 +1,22 @@
+[SESSION_CREATED_AT:2025-11-18T12:28:34.656504]
+Narrador: **INTrodução Epica**
+
+O silêncio é retomado pela escuridão. A noite está escura e opaca, com apenas uma brilhante lâmina de lua a iluminar o caminho. O vento suave, como um sussurro, faz barulho em meio ao silêncio. Você está parado na entrada de uma caverna estreita, as paredes profundas e misteriosas. A escuridão parece se espalhar pelas sombras, como se tentasse proteger algo.
+
+**O Local Exato**
+
+A caverna é pequena, com uma entrada única em forma de arco que leva a um túnel escuro. O cheiro de umidade é intenso, e o ar está úmido. Você pode sentir o calor do solo ao seu pés. A lâmina de lua canta sombras mortas enquanto se movem ao longe.
+
+**O Número Inicial**
+
+De repente, você ouve um barulho atrás dele. Um barulho que parece vir da escuridão. O som é suave e distante, mas não desaparece por perto. Você olha para trás, tentando ver quem é o responsável pelo som, mas não há ninguém.
+
+**O Nome do NPC**
+
+Um jovem garoto com olhos misteriosos e cabelos longos e negros entra na caverna à sua frente. Ele parece estar procurando por algo ou alguém. Ele se veste com ropa tradicional de uma cultura distante, e seus passos são suaves ao se mover.
+
+**A Desejo do Jogador**
+
+Você deseja saber qual é o nome desse jovem garoto? Você quer conhecer melhor ele e descobrir o que está acontecendo na caverna. Mas você também tem medo de nada mais, sabe?
+
+(Pergunte ao jogador para escolher uma ação: ouvir a palavra do jovem garoto, procurar por outro alvo no túnel escuro, tentar falar com ele, etc.)

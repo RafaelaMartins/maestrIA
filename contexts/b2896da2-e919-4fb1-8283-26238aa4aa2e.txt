@@ -1,0 +1,23 @@
+[SESSION_CREATED_AT:2025-11-15T18:48:18.764969]
+Narrador:  Na terra de Ghanor, uma fantasia média exótica, um mundo onde o magico se mistura com a mágica, o clima é frio, gelado e pavoroso, com nevoeiros brumosos cobrindo as montanhas altas. Ao seu redor, grandes florestas escuras abrigam criaturas fantásticas e perigosas.
+
+O herói do grupo é um humilde caçador chamado Orion, que após ter ajudado as três druidesas capturarem o último macho de corça-de-fogo, teve sua vida mudada. Agora ele recebeu uma nova missão: salvar uma cidade em ruínas das garras de um poderoso monstro que assola o continente.
+
+Orion é acompanhado por seus amigos leais e fiel, e agora enfrentará o desafio mais difícil de sua vida: superar as altas montanhas geladas do Alto Abismo e encontrar um artefato mágico chamado "O Disco", que é a única esperança de salvar sua cidade natal.
+
+Agora, o mestre tem uma pergunta clara ao grupo: Orion, você quer procurar este artifício mágico "O Disco" em companhia dos seus amigos ou preferir buscar sua ajuda em outros aliados? (Possíveis respostas incluem: ir sozinho, buscar uma equipe, se aliar a um monarca ou encontrar um mestre de magia.)
+Jogador: buscar um grupo para a missãp
+Narrador:  Em meio ao pitoresco cenário gelado da terra de Ghanor, onde montanhas nevadas cobrem o horizonte e espinhaços de floresta escura encobrem as suas encostas, encontra-se Orion, um valente caçador. Após ter realizado uma tarefa para as três poderosas druidesas, sua vida mudou. Porém, ainda tem uma missão: salvar sua cidade natal de um terrível monstro que assola o continente.
+Para tal, ele recebeu uma mensagem mística: buscar um artefato mágico chamado "O Disco", o único possível remédio para a catástrofe em curso. O caminho até lá, contudo, é perigoso e longo, passando pelas altas montanhas geladas do Alto Abismo.
+Agora, Orion precisa de ajuda. Você pode escolher acompanhá-lo em sua busca ou procurar aliados mais próximos ao destino. Há várias opções: ir sozinho, buscar uma equipe para embarcar na missão, encontrar um poderoso monarca que poderá ajudar a sua causa, ou então procurar uma mestre de magia capaz de abrir o caminho.
+Então, Orion, qual é a sua decisão? (Opções possíveis: A) Buscar uma equipe para embarcar na missão; B) Ir sozinho; C) Procurar ajuda de um poderoso monarca; D) Encontrar uma mestre de magia capaz de abrir o caminho.)
+Jogador: eu quero buscar uma equipe para embarcar na missão
+Narrador:  Em meio ao cenário pitoresco, gelado e perigoso da terra de Ghanor, onde montanhas nevadas cobrem o horizonte e espinhaços de floresta escura encobrem as suas encostas, encontra-se Orion, um valente caçador. Após ter realizado uma tarefa para as três poderosas druidesas, sua vida mudou. Porém, ainda tem uma missão: salvar sua cidade natal de um terrível monstro que assola o continente.
+
+Para tal, ele recebeu uma mensagem mística: buscar um artefato mágico chamado "O Disco", o único possível remédio para a catástrofe em curso. O caminho até lá, contudo, é perigoso e longo, passando pelas altas montanhas geladas do Alto Abismo.
+
+Agora, Orion precisa de ajuda. Você pode escolher acompanhá-lo em sua busca ou procurar aliados mais próximos ao destino. Há várias opções: ir sozinho, buscar uma equipe para embarcar na missão, encontrar um poderoso monarca que poderá ajudar a sua causa, ou então procurar uma mestre de magia capaz de abrir o caminho.
+
+Agora, Orion, quais são suas opções? (Opções possíveis: A) Buscar uma equipe para embarcar na missão; B) Ir sozinho; C) Procurar ajuda de um poderoso monarca; D) Encontrar uma mestre de magia capaz de abrir o caminho.)
+
+O que você faz agora? A) X B) Y C) Z ou descreva outra ação.

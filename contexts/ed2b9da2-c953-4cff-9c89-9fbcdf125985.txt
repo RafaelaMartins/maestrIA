@@ -1,0 +1,20 @@
+[SESSION_CREATED_AT:2025-11-21T15:20:13.529483]
+Mestre: "O mundo em torno é um vasto deserto pós-apocalíptico, sua atmosfera carregada de tensão e ruínas. A sombra de enormes edifícios abandonados se estendem por todos os lados. O ar é sujo e frio, cheio de odores desagradáveis e silêncio inquietante quebrado pela distância por um motor rugindo.
+
+Em meio a isso, você, Findariel, descansa em uma cratera secunda, onde a luz do sol brilha intermitentemente através das nuvens. Ao redor, o ar seco e agitado, muitas vezes parecem ser fantasmas que se movem entre as ruínas.
+
+De repente, um barulho de carruagem se aproxima, a velocidade aumenta rapidamente até atingir uma frenética tempestade de metal. O carro chega a cratera e para, revelando uma figura esbeltamente armada que sai do veículo. Este é um ser humano, mas seu rosto é coberto por uma máscara escura. Ele olha diretamente para você, de maneira hostil, e abre sua boca para falar."
+
+"Ele pede: 'Você tem algo que eu preciso? Ou você está tentando me chamar a atenção?'
+
+O mundo ao redor se torna mais sombrio, e as tensões estão em alta. O que você faz?"
+
+O que você faz?
+FICHA_CARREGADA: Findariel — {'FOR': 0, 'DES': 2, 'CON': 0, 'INT': 0, 'SAB': 2, 'CAR': 2}
+Jogador (Findariel): Respondo: "depende, quem é você?"
+REFEREE_DECISION: {'requires_roll': False, 'attr': None, 'skill': None, 'dc': None, 'reason': 'Ação comum, sem teste necessário.'}
+Mestre: Ao redor, o ar seco e agitado continua a assustar, enquanto o carro de metal rugido permanece em silêncio. O homem armado responde com uma risada malsucedida.
+
+"Eu sou um caçador. Eu procuro alguém chamado Findariel. É ele? Por que esteve escondido aqui? Quem o protege?"
+
+A luz do sol brilha mais fraco agora, fazendo com que as ruínas apareçam ainda mais sinistras. Atenção, Findariel. O homem armado parece se preparar para atacar. O que você faz agora?

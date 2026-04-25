@@ -1,0 +1,45 @@
+[SESSION_CREATED_AT:2025-11-18T14:41:48.758696]
+Narrador: **INTRODUÇÃO EPÍACA**
+
+(Epoca de choque, silêncio absoluto)
+
+Você se encontra no coração do Vão, um lugar onde a luz não brilha mais. A cidade que você conheceu apenas como uma sombra agora está prestes a desabar. As nuvens amarelas começam a cobrir o céu, e a respiração se torna pesada.
+
+**(Fim da introdução)**
+
+**JOGADOR NO AMBIENTE**
+
+Você está posicionado na esquina do salão de reuniões com as paredes cobertas por tapeçarias de velas. A luz fraca sinaliza uma cama de madeira, cercada por pilhas de troncos secos e cadernos apertados. Um pequeno balcão localiza o centro da sala, onde um velho homem, com olhos frios e olheiras profundas, observa você com uma mistura de curiosidade e medo.
+
+O velho homem é um dos poucos que ainda permanece na cidade, uma espécie de herói lendária. Sua presença é tão intensa que parece absorver o silêncio ao redor. Ele olha para você como se pesasse nos seus dedos, então se aproxima.
+
+"Sabe", diz ele em um sussurro ácido, "eu acredito que está hora de voltarmos ao tempo. A cidade está perdendo tempo, e os mal-entendidos só vai piorar."
+
+O velho homem desenha um mapa no chão com uma caneta fechada, mostrando caminhos não explorados.
+
+"Quer sair e explorar? Vamos criar nossa própria história. Porém... o que você vai fazer se voltarmos ao passado?"
+
+**(Fim do jogador no ambiente)**
+Jogador: gostaria de explorar
+Narrador: Você decide explorar o mapa proposto pelo velho homem, que começa a explicar os diferentes caminhos. Após alguns minutos de navegação, você encontra um caminho estreito que leva a um local escondido no coração da cidade. O velho homem assente em sua cabeça e muda a caneta para focar em você.
+
+"Este é o lugar," diz ele com confiança. "Eles o encontraram há alguns dias. Você verá seus restos."
+
+Você parte em direção ao local indicado, enquanto o velho homem permanece no coração da cidade. Após um curto caminho, você encontra a entrada escondida de uma antiga igreja abandonada.
+
+Ao entrar na igreja, você nota que há pessoas ao seu redor, esperando por algo ou alguém. Uma das pessoas se aproxima de você e começa a falar em voz baixa.
+
+"Ei, você é o último, certo?", diz ela. "Eu estou pensando em encontrar um lugar onde podemos esconder nossas coisas. Aquela igreja foi um templo para nós antes..."
+
+Ela descreve como as pessoas foram se dissolvendo após a queda da cidade e como alguns conseguiram encontrar o que procuravam nas ruínas. Ela conta sobre uma estrutura no canto dos fundos, mas não sabe onde é ou por quê.
+
+"Você pode achar algo interessante lá?" pergunta ela com um olhar desafiador.
+
+Você considera a opção de explorar a estrutura e descobrir o que está escondido. Sua escolha é influenciada pela sua motivação inicial de evitar o passado, mas também pela curiosidade por saber mais sobre as pessoas e como elas se comportaram antes da queda.
+
+Agora você tem duas opções:
+
+1. Explorar a estrutura.
+2. Voltar ao velho homem e perguntar sobre a cidade e seus habitantes.
+
+O que você fará?

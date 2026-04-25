@@ -1,0 +1,20 @@
+[SESSION_CREATED_AT:2025-11-21T14:31:48.578205]
+Mestre: "Nas ruínas de Zephyria, onde sombras se entrecruzam com as falhas da civilização, o vento sopra por trás de um muro escondendo uma cidade antiga. Os edifícios em ruínas são palco para eventos enigmáticos, e ruidos estranhos surgem do abismo que se estende abaixo.
+Uma figura sombria passa por um arco de tijolo, o seu silhueta escura contrasta com a luz da lua. Ele é o enigmático Mordael, o ladrão de relíquias, que busca pelas riquezas escondidas nas ruínas.
+Findariel está em um túmulo antigo, seu corpo mágico se adapta à natureza, o choro das folhas e a dor do ferro. O mundo é frio, mas ele se sente quente, como uma luz no peco da escuridão. Ao redor, um barulho crescente indica a chegada de uma carruagem.
+O que você faz?"
+
+O que você faz?
+FICHA_CARREGADA: Findariel — {'FOR': 0, 'DES': 2, 'CON': 0, 'INT': 0, 'SAB': 2, 'CAR': 2}
+Jogador (Findariel): Me escondo e fico a espreita vendo a carruagem para tentar descobrir quem é
+REFEREE_DECISION: {'requires_roll': True, 'attr': 'DES', 'skill': 'Teste Genérico', 'dc': 12, 'reason': 'Ação explícita de teste.'}
+FICHA_CARREGADA: Findariel — {'FOR': 0, 'DES': 2, 'CON': 0, 'INT': 0, 'SAB': 2, 'CAR': 2}
+Jogador (Findariel): Me escondo e fico a espreita vendo a carruagem para tentar descobrir quem é
+REFEREE_DECISION: {'requires_roll': True, 'attr': 'DES', 'skill': 'Teste Genérico', 'dc': 12, 'reason': 'Ação explícita de teste.'}
+FICHA_CARREGADA: Findariel — {'FOR': 0, 'DES': 2, 'CON': 0, 'INT': 0, 'SAB': 2, 'CAR': 2}
+RESULTADO_TESTE: Rolou 16 + mod -4 = 12 contra DC 12 → success
+RESULTADO_TESTE_DETALHADO: Rolou 16 + mod -4 = 12 contra DC 12 → success
+Narrador: Findariel age e o mundo responde — algo muda de forma intensa.
+
+O que você faz agora?
+FICHA_CARREGADA: Findariel — {'FOR': 0, 'DES': 2, 'CON': 0, 'INT': 0, 'SAB': 2, 'CAR': 2}

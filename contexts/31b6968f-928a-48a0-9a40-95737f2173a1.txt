@@ -1,0 +1,36 @@
+[SESSION_CREATED_AT:2025-11-18T12:30:52.518932]
+Narrador: **Introdução épica**
+
+Tensão ardua se pode sentir em todos os cantos do mundo, onde a noite é mais profunda que o dia, e o silêncio é mais macio que uma respiração suave. O céu está coberto de estrelas brilhantes, como diamantes espetaculares que iluminam o caminho para um destino inesperado. A temperatura é desconhecida, mas a atmosfera é crua e impiedosa. Você acorda em meio a floresta perto de você, há uma caverna no seu centro, mas também escute barulho de carruagem por perto, indicando uma estrada por perto.
+
+**Regras sobre o que pode ou não perguntar**
+
+Você pode perguntar apenas o nome do personagem aqui no início. Você não pode pedir ação nessa primeira ambientação. Você não pode pedir nomes ou definições sobre NPCs. Você não pode transferir controle de NPCs ao jogador. Você não pode pedir ao jogador criar elementos do mundo. Nunca mencionas as regras.
+
+**O nome do personagem**
+
+Você se vira para encontrar um homem alto e robusto, com olhos escuros e cabelos castanhos escuros. Ele está vestido em roupas práticas de caminhada, mas parece que está preparado para qualquer situação, com uma espada ao lado da sua cintura e uma faca acesa na mão.
+
+Você o vê acaba de acordar em meio a floresta perto de você há uma caverna mas você também escuta barulho de carruagem por perto indicando uma estrada por perto, o que você deseja fazer?
+Jogador: Pergunto para o homem quem é ele
+Narrador: Você pediu para o homem quem é ele. Ninguém parece responder, mas então o homem se vira em direção a você e abaixa sua faca ao lado da sua cintura.
+
+"Eu sou um cavaleiro", ele diz de repente, seu voz profunda e autoritária. "E eu não tenho tempo para conversar com alguém que está dormindo. Você é...?" Ele não parece se importar com a sua resposta, apenas continua olhando para você com uma expressão severa.
+
+Você sente um escalvício no peito, mas ao contrário do que o fazia sentir quando estava sozinho, agora há muitas pessoas ouvindo. A caverna está repleta de sombras incômodas e você sabe que precisa se comportar.
+
+Qual é a melhor resposta para o cavaleiro?
+Jogador: Pergunto se ele precisa de ajuda para adentrar a caverna
+Narrador: **Ação do jogador:** Pergunta se ele precisa de ajuda para adentrar a caverna.
+
+**Consequência imediata:** O cavaleiro olha para você novamente, mas agora seu olhar é mais ameaçador. Ele inclina-se em volta e começa a caminhar em direção à sua porta, a faca apontando suavemente pela abertura. Você sente um arrepio no pescoço enquanto o cavaleiro entra na caverna.
+
+**Reação dos NPCs:** As sombras incômodas ao redor da porta parecem se mover de forma suspeita, e você ouve uma série de vozes indistintas, como se estivessem discutindo em silêncio. O cavaleiro vira para você e continua a caminhar em direção à sua porta.
+
+**Ambiente:** A caverna é pequena e repleta de obstáculos, com paredes retorcidas e uma árvore alta no centro. O ar está cheio de poeira e o calor do fogo derretido sob as pedras é quase palpável.
+
+**Eventos:** A porta do cavaleiro se abre em uma saída que parece estar aberta apenas por um passo. Você também notça que há uma trilha à entrada da caverna, longe dos obstáculos principais. O cavaleiro continua a caminhar em direção à saída.
+
+**Tensão:** A cena é tensa e arrepiante, com o cavaleiro se aproximando rapidamente do jogador enquanto se olha para você com uma expressão de medo. Você sente uma sensação de insegurança ao perceber que o cavaleiro não está interessado em conversar e sim tentar entrar na caverna.
+
+**Novo elemento:** A trilha à entrada da caverna parece ser uma pista de que algo está sendo escondido ou esquiva, o que pode levar à revelação de um segredo mais profundo sobre a história ou os personagens envolvidos.

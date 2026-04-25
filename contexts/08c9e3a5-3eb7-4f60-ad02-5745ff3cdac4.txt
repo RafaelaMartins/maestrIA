@@ -1,0 +1,41 @@
+[SESSION_CREATED_AT:2025-11-27T19:42:36.285739]
+Mestre: "Na fronteira entre uma terra em ruínas e um céu esverdeado, onde a sombra dos edifícios antigos se estende por horas, o vento lembra os suspiros de uma eretizante. Um calor sufocante embalha a cidade, com o oloroso perfume das ruínas que mascaram a tristeza de um mundo perdido. Em meio a isso, estende-se um labirinto de ruas esburacadas por tempestades e guerras passadas, onde as sombras se movimentam entre os edifícios abandonados.
+
+Findariel é despertado do sono profundo pelos gritos de uma multidão em tumulto em uma praça central, onde um poderoso mercador estrangeiro está agindo de forma intrigante. Ele é uma figura sólida, com roupas escuras e um olhar pensativo, que se senta em seu cavalo maciço, envolvido na negociação de algum contrato misterioso. O cenário é tensão, com o mercador oferecendo ouro para quem conseguir uma espada perdida, chamada Atramento, cujo destino ainda não se sabe e que pode mudar a sorte do mundo todo.
+
+O que você faz?"
+
+O que você faz?
+FICHA_CARREGADA: Findariel — {'FOR': 0, 'DES': 2, 'CON': 0, 'INT': 0, 'SAB': 2, 'CAR': 2}
+FICHA_CARREGADA: Findariel — {'FOR': 0, 'DES': 2, 'CON': 0, 'INT': 0, 'SAB': 2, 'CAR': 2}
+Jogador (Findariel): Falo com ele e digo que aceito a missão em busca da espada perdida
+REFEREE_DECISION: {'requires_roll': False, 'attr': None, 'skill': None, 'dc': None, 'reason': 'Ação comum, sem teste necessário.'}
+Mestre: A história prossegue no meio da praça em tumulto, onde o mercador estrangeiro continua a oferecer um incitante recompensa para quem desvenda o mistério da espada perdida chamada Atramento. O vento, que antes se tornava uma tristeza embalada pela memória das ruínas, agora é interrompido pelo barulho do cavalo de Findariel, um animal gigante e maciço, que se aproxima do mercador com a determinação e resolução de quem busca a justiça. A multidão quieta, interessada pela chegada de um novo alçado que poderá desafiar a autoridade daqueles que governam essa cidade decadente.
+
+O mercador observa o cavaleiro silenciosamente, pensativo e sério, até Findariel se aproximar e falar: "Estou pronto para buscar a Atramento." O mercador abre seu bau, revelando um cachê de ouro que se espalha pela luz da lua, iluminando o rosto sanguíneo e determinado do cavaleiro.
+
+O mercador sorriu e agradece ao guerreiro pela decisão de aceitar a missão. "Agora você entra em uma jornada perigosa," diz ele, "a espada é protegida por uma ameaça sombria que cresce cada vez mais poderosa. Ninguém sabe o que a Atramento é capaz de fazer - nem quem a possui, e menos os que se opõem a sua missão."
+
+A multidão em tumulto agora se torna um murmúrio de medo e inquietação, enquanto Findariel levanta o olhar para as ruas sombrias e tem um premonitório sentimento que esta jornada será mais difícil do que imaginava. O vento parece se intensificar, levantando uma tempestade de poeira que envolve a cidade em cinzas enquanto o mercador desaparece atrás de sua guarda secreta.
+
+O que você faz agora?
+FICHA_CARREGADA: Findariel — {'FOR': 0, 'DES': 2, 'CON': 0, 'INT': 0, 'SAB': 2, 'CAR': 2}
+Jogador (Findariel): Falo com ele e digo que aceito a missão em busca da espada perdida
+REFEREE_DECISION: {'requires_roll': False, 'attr': None, 'skill': None, 'dc': None, 'reason': 'Ação comum, sem teste necessário.'}
+Mestre: A cidade, já desolada e cercada pela sombra, se torna mais fria e suspensa. O vento assoma, trazendo com ele o som do cavalinho de Findariel, um animal de metal que vibra com o impacto sobre as ruínas. A multidão, agora em silêncio profundo, acompanha a partida do cavaleiro silencioso. O mercador está desaparecido, e nenhuma pista de sua passagem é visível.
+A cidade se torna uma sombra mais escura, enquanto o ar se torna mais tenso. Uma sensação inexplicável se espalha pela mente de Findariel, ainda que não tenha ideia de onde ela vem ou para onde está indo.
+Por fim, uma forte luz brilha no horizonte e revela um túnel encantado, o único caminho para encontrar a Atramento. O cavaleiro sabe que esta é a via certa, mas não há retorno depois daquela porta fechada.
+O que você faz agora?
+FICHA_CARREGADA: Findariel — {'FOR': 0, 'DES': 2, 'CON': 0, 'INT': 0, 'SAB': 2, 'CAR': 2}
+FICHA_CARREGADA: Findariel — {'FOR': 0, 'DES': 2, 'CON': 0, 'INT': 0, 'SAB': 2, 'CAR': 2}
+Jogador (Findariel): Tento buscar por informações em tavernas locais sobre o possível paradeiro de Atramento
+REFEREE_DECISION: {'requires_roll': True, 'attr': 'DES', 'skill': 'Teste Genérico', 'dc': 12, 'reason': 'Ação explícita de teste.'}
+FICHA_CARREGADA: Findariel — {'FOR': 0, 'DES': 2, 'CON': 0, 'INT': 0, 'SAB': 2, 'CAR': 2}
+Jogador (Findariel): Tento buscar por informações em tavernas locais sobre o possível paradeiro de Atramento
+REFEREE_DECISION: {'requires_roll': True, 'attr': 'DES', 'skill': 'Teste Genérico', 'dc': 12, 'reason': 'Ação explícita de teste.'}
+FICHA_CARREGADA: Findariel — {'FOR': 0, 'DES': 2, 'CON': 0, 'INT': 0, 'SAB': 2, 'CAR': 2}
+RESULTADO_TESTE: Rolou 11 + mod -4 = 7 contra DC 12 → fail
+RESULTADO_TESTE_DETALHADO: Rolou 11 + mod -4 = 7 contra DC 12 → fail
+Narrador: O tavernão é um pouco mais sombrio hoje e muitas pessoas olham para você de maneira suspeita. A informação sobre Atramento parece estar sendo mantida em segredo, mas encontrar a porta certa prova que sua busca não é desperdiçada.
+Você começa a sentir um senso de desespero crescente no coração, pois as informações sobre o paradeiro de Atramento parecem estar bem além da sua capacidade de buscar. O que você faz agora?
+FICHA_CARREGADA: Findariel — {'FOR': 0, 'DES': 2, 'CON': 0, 'INT': 0, 'SAB': 2, 'CAR': 2}

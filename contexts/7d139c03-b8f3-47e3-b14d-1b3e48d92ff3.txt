@@ -1,0 +1,18 @@
+[SESSION_CREATED_AT:2025-11-19T15:20:45.512072]
+Mestre: Em um mundo onde a destruição é um preço tão alto quanto o vício... 
+
+Uma cidade chamada Nova Terra, habitada por pessoas cujas almas já foram consumidas pela noção de morte. A cidade está cercada por uma barreira invisível, criada pelos sensores que monitoram cada movimento e comportamento. Essa barreira é a última linha de defesa contra o que restou da população do planeta.
+
+Nos corredores secretos da cidade, um grupo de rebels busca lutar contra a opressão. Eles são liderados por uma misteriosa figura conhecida apenas como "O Exilado". 
+
+A fuga é dura e perigosa, mas a esperança ainda resta. O Exilado tem um plano para libertar Nova Terra daquela barreira invisível...
+Jogador: Quero me juntar ao grupo de rebeldes
+REFEREE_DECISION: {'requires_roll': False, 'attr': None, 'skill': None, 'dc': None, 'reason': 'Ação comum, sem teste necessário.'}
+Mestre: Em Nova Terra, onde a barreira invisível cercava a cidade como uma feitiçaria, a esperança ainda restava. Um grupo de rebeldes liderados por "O Exilado" lutava incansavelmente para libertar seus corações e sua alma da opressão. Seu plano era simples: usar a tecnologia avançada e conhecida como "Aventuras", uma arma que não apenas rompia as barreiras invisíveis, mas também liberava os corpos mortos em busca de poder.
+
+E assim, com um último gesto e uma mão firme sobre o controle da Aventuras, a cidade começou a se abrir para aqueles que queriam escapar. Mas era preciso mais do que apenas apertar um botão; era precisar fazer tudo acontecer, passo a passo.
+
+O jogador, o personagem, agora está no corredor secreto, olhando em volta. O som das palhas se apagam, as luzes mudam e a barreira invisível desaparece. A cidade começa a se abrir...
+Jogador: Quero me juntar ao grupo de rebeldes
+REFEREE_DECISION: {'requires_roll': False, 'attr': None, 'skill': None, 'dc': None, 'reason': 'Ação comum, sem teste necessário.'}
+Mestre: A cidade de Nova Terra, cercada por uma barreira invisível feita por sensores que monitoram cada movimento e comportamento. O grupo de rebeldes liderados pelo Exilado está no corredor secreto, esperando a oportunidade para atacar a barreira e libertar a cidade da opressão. A fuga é difícil, mas os rebeldes estão determinados a vencer. Se eles conseguirem atingir o Exilado, a chance de libertar Nova Terra está no jogo. É hora de dar um passo na direção de liberdade...

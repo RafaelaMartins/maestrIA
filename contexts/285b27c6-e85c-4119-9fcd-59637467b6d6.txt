@@ -1,0 +1,19 @@
+[SESSION_CREATED_AT:2025-11-18T12:16:12.897563]
+Narrador: **Introdução Epica**
+
+Você está no coração de uma terra abandonada, onde o tempo parecia se acalmar. O som da respiração silenciosa do ar, os aromas dos incêndios escondidos e a brisa fria que acaricia seu rosto são o único som que você ouve agora. A escuridão está cercada por árvores mortas e troncos caídos, como uma estrutura morta pelo tempo. O vento susurra histórias antigos em sua orelha, enquanto um som distante ecoa pelas ruínas do passado.
+
+Agora, você acorda em meio a floresta perto de uma grande caverna. A luz do sol brilha apenas na entrada da caverna, iluminando as paredes escorregadias e os arredores misteriosos. Um som barulhento ecoa vindo das profundezas da caverna, indicando a presença de carruagens. Você também ouve uma voz distante, que parece vir de fora.
+
+**Regras sobre o que pode perguntar**
+
+- Pergunte apenas o nome do personagem aqui no início.
+- Não peça informações sobre NPCs (Personagens Não Científicos).
+- Não transfira controle de NPCs ao jogador.
+- Não peça instruções sobre como criar elementos do mundo.
+
+**Ação dentro do ambiente**
+
+Você acaba de acordar em meio a floresta perto da caverna. A temperatura é fria, e o ar está cheio de poeira. Você ouve um barulho vindo das profundezas da caverna e uma voz distante que parece vir de fora.
+
+Você está agora parte desse mundo mágico para este personagem? Qual é a sua primeira ação em relação à cena?
