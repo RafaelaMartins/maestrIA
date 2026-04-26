@@ -58,6 +58,22 @@ class CharacterParser:
 
         return {"name": "Aventureiro", "attributes": {"FOR":10, "DES":10, "CON":10, "INT":10, "SAB":10, "CAR":10}}
 
+VALID_VOICES = {
+    "francisca": "pt-BR-FranciscaNeural",
+    "thalita": "pt-BR-ThalitaNeural",
+    "duarte": "pt-PT-DuarteNeural",
+    "raquel": "pt-PT-RaquelNeural",
+    "antonio": "pt-BR-AntonioNeural"
+}
+
+def get_valid_voice(voice_str: str, default: str) -> str:
+    if not voice_str: return default
+    v_lower = voice_str.lower()
+    for k, v in VALID_VOICES.items():
+        if k in v_lower:
+            return v
+    return default
+
 async def _generate_audio_async(text: str, output_file: str, default_npc_voice: str = None, known_voices: dict = None):
     # known_voices: { "Nome": "Voz" }
     narrator_voice = "pt-BR-AntonioNeural"
@@ -72,6 +88,7 @@ async def _generate_audio_async(text: str, output_file: str, default_npc_voice: 
     
     temp_files = []
     last_narration = ""
+    last_voice_tag = None
     
     for i, part in enumerate(parts):
         part = part.strip()
@@ -85,7 +102,15 @@ async def _generate_audio_async(text: str, output_file: str, default_npc_voice: 
             # É fala - NUNCA PODE SER ANTONIO
             npc_voice_to_use = default_npc_voice
             
-            if known_voices:
+            # 1. Se tem tag dentro da própria fala
+            voice_match = re.search(r'\[VOICE:(.*?)\]', part, flags=re.IGNORECASE)
+            if voice_match:
+                npc_voice_to_use = get_valid_voice(voice_match.group(1).strip(), npc_voice_to_use)
+            # 2. Se a narração logo antes da fala deixou uma tag
+            elif last_voice_tag:
+                npc_voice_to_use = get_valid_voice(last_voice_tag, npc_voice_to_use)
+            
+            if known_voices and not npc_voice_to_use:
                 for name, v in known_voices.items():
                     if name.lower() in last_narration.lower():
                         npc_voice_to_use = v
@@ -93,20 +118,28 @@ async def _generate_audio_async(text: str, output_file: str, default_npc_voice: 
             
             # Heurística de gênero se não achou nome ou voice id específico
             if not npc_voice_to_use or npc_voice_to_use == narrator_voice:
-                if any(ind in last_narration.lower() for ind in ["ela ", " a ", "uma ", "feiticeira", "guerreira", "mira", "lady"]):
-                    voice = "pt-BR-ThalitaMultilingualNeural"
-                elif any(ind in last_narration.lower() for ind in ["ele ", " o ", "um ", "barman", "guarda", "homem", "mestre"]):
+                if any(ind in last_narration.lower() for ind in ["ela ", " a ", "uma ", "feiticeira", "guerreira", "mira", "lady", "mulher"]):
+                    voice = "pt-BR-ThalitaNeural"
+                elif any(ind in last_narration.lower() for ind in ["ele ", " o ", "um ", "barman", "guarda", "homem", "mestre", "ancião", "velho"]):
                     voice = "pt-PT-DuarteNeural"
                 else:
-                    voice = "pt-BR-ThalitaMultilingualNeural" # Fallback feminino
+                    voice = "pt-BR-ThalitaNeural" # Fallback feminino
             else:
-                voice = npc_voice_to_use
+                voice = get_valid_voice(npc_voice_to_use, "pt-BR-ThalitaNeural")
             
             speech_text = part.strip('"')
+            speech_text = re.sub(r'\[VOICE:.*?\]', '', speech_text, flags=re.IGNORECASE).strip()
+            last_voice_tag = None # Consome a tag
         else:
             # É narração - SEMPRE ANTONIO
             voice = narrator_voice
             last_narration = part[-60:]
+            
+            # Procura tag na narração para salvar para a próxima fala
+            voice_match = re.findall(r'\[VOICE:(.*?)\]', part, flags=re.IGNORECASE)
+            if voice_match:
+                last_voice_tag = voice_match[-1].strip()
+                
             speech_text = re.sub(r'\[VOICE:.*?\]', '', part, flags=re.IGNORECASE).strip()
             speech_text = re.sub(r'\[VOZ:.*?\]', '', speech_text, flags=re.IGNORECASE).strip()
             
@@ -131,11 +164,13 @@ async def _generate_audio_async(text: str, output_file: str, default_npc_voice: 
             except:
                 pass
 
-def generate_tts_audio(text, output_file, voice=None, known_voices=None):
+def generate_tts_audio(text, output_file, voice=None, known_voices=None) -> bool:
     try:
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
         loop.run_until_complete(_generate_audio_async(text, output_file, voice, known_voices))
         loop.close()
+        return True
     except Exception as e:
         print(f"Erro fatal no TTS: {e}")
+        return False

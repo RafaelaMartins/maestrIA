@@ -34,9 +34,10 @@ def roteirista_node(state: GameState) -> GameState:
             {{
                 "id": "npc_X",
                 "nome": "Nome",
-                "genero": "Masculino|Feminino",
-                "voz_escolhida": "pt-BR-ThalitaMultilingualNeural|pt-PT-DuarteNeural|pt-BR-FranciscaNeural",
+                "genero": "Masculino ou Feminino (NUNCA os dois)",
+                "voz_escolhida": "pt-BR-ThalitaNeural (Fem Aliada) | pt-PT-DuarteNeural (Masc) | pt-PT-RaquelNeural (Fem Inimiga) | pt-BR-FranciscaNeural (Fem Neutra)",
                 "tipo": "Amigo|Neutro|Inimigo|Indiferente",
+                "dificuldade": "Alta (para aliados imortais e chefes) | Média | Baixa (capangas/comuns)",
                 "objetivo": "O que ele quer",
                 "historia": "Background curto"
             }},

@@ -33,17 +33,18 @@ def orquestrador_router(state: GameState) -> GameState:
     Você é o Orquestrador do RPG.
     Ação do jogador: "{state.get('current_input')}"
     
-    REGRAS DO SISTEMA (Tormenta Adaptado - D10):
+    REGRAS DO SISTEMA (D20):
     1. Determinar Nível da Tarefa:
-       - Tarefa Fácil: CD 5
-       - Tarefa Média: CD 7 ou 8
-       - Tarefa Difícil: CD 9 ou 10
-    2. Determinar a Perícia Relevante:
-       - Lábia / Persuasão: Para tirar informações, mentir, convencer.
-       - Adivinhação: Para ler mentes e detectar enganos.
-       - Armas Brancas: Para lutar com espadas, machados, etc.
-       - Conhecimento de X: Para responder perguntas.
-       - Outras aplicáveis conforme o bom senso.
+       - Tarefa Fácil: CD 10
+       - Tarefa Média: CD 15
+       - Tarefa Difícil: CD 20
+    2. Determinar o Atributo Relevante:
+       - FOR (Força): Para ataques corpo a corpo e testes de brutalidade.
+       - DES (Destreza): Para furtividade, acrobacia, ataques à distância.
+       - CON (Constituição): Para resistir a venenos e cansaço.
+       - INT (Inteligência): Para conhecimentos e investigação.
+       - SAB (Sabedoria): Para percepção e intuição.
+       - CAR (Carisma): Para persuasão e enganação.
     
     PERGUNTE A SI MESMO:
     1. O jogador está falando EM VOZ ALTA com um NPC (ex: "Olá taverneiro" ou usando aspas "")? Se sim, is_dialogue = true.
@@ -55,7 +56,8 @@ def orquestrador_router(state: GameState) -> GameState:
         "is_dialogue": true/false,
         "npc_name": "Nome do NPC se houver, ou vazio",
         "requires_roll": true/false,
-        "skill": "Perícia se precisar de dado",
+        "skill": "Ação ou Perícia testada (ex: Atacar, Persuasão)",
+        "attr": "FOR, DES, CON, INT, SAB, ou CAR",
         "dc": 10
     }}
     """
@@ -85,7 +87,11 @@ def orquestrador_router(state: GameState) -> GameState:
                     
             elif data.get("requires_roll"):
                 state["requires_roll"] = True
-                state["roll_details"] = {"skill": data.get("skill", "Geral"), "dc": data.get("dc", 10)}
+                state["roll_details"] = {
+                    "skill": data.get("skill", "Geral"),
+                    "attr": data.get("attr", "FOR"),
+                    "dc": data.get("dc", 10)
+                }
                 state["next_node"] = "avaliador_testes"
             else:
                 state["requires_roll"] = False

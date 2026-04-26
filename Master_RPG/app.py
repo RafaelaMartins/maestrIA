@@ -32,7 +32,7 @@ if "game_state" not in st.session_state:
         "turn_count": 0,
         "char_name": "Aventureiro",
         "char_data": None,
-        "current_location": "A Taverna do Sábio Sonolento",
+        "current_location": "O local onde a jornada começa",
         "active_npcs": {},
         "interacting_npc": None,
         "world_lore": "",
@@ -128,7 +128,7 @@ if st.session_state.game_started:
         if msg.get("content"):
             with st.chat_message(msg["role"]):
                 # Limpa tags de voz do texto visível
-                display_text = re.sub(r'\[VOICE:.*?\]', '', msg["content"])
+                display_text = re.sub(r'\[VOICE:.*?\]', '', msg["content"], flags=re.IGNORECASE)
                 st.markdown(display_text)
                 
                 # Se for a última mensagem do assistente, e a voz estiver ligada, e ainda não tocou:
@@ -151,23 +151,33 @@ if st.session_state.game_started:
                                     npc_data = st.session_state.game_state["active_npcs"].get(interacting_npc_id, {})
                                     npc_voice = npc_data.get("voz_escolhida")
                                 
-                                generate_tts_audio(msg["content"], audio_path, npc_voice, known_voices)
+                                success = False
+                                for _ in range(3):
+                                    if generate_tts_audio(msg["content"], audio_path, npc_voice, known_voices):
+                                        success = True
+                                        break
+                                    import time
+                                    time.sleep(1)
                                 
-                                # Lê o arquivo como bytes para evitar erro de MediaFileHandler do Streamlit
-                                with open(audio_path, "rb") as f:
-                                    audio_bytes = f.read()
-                                st.audio(audio_bytes, format="audio/mp3", autoplay=True)
+                                if success and os.path.exists(audio_path) and os.path.getsize(audio_path) > 0:
+                                    # Lê o arquivo como bytes para evitar erro de MediaFileHandler do Streamlit
+                                    with open(audio_path, "rb") as f:
+                                        audio_bytes = f.read()
+                                    st.audio(audio_bytes, format="audio/mp3", autoplay=True)
+                                else:
+                                    st.warning("⚠️ Falha ao gerar a voz após várias tentativas.")
+                                
                                 st.session_state.last_audio_played_idx = idx
 
     # Action Area
     if st.session_state.game_state.get("requires_roll") and not st.session_state.game_state.get("roll_result"):
         req = st.session_state.game_state["roll_details"]
         with st.container(border=True):
-            st.warning(f"🎲 Rolagem necessária: **{req.get('skill')}** (CD {req.get('dc')})")
-            if st.button("Rolar D10"):
-                roll = random.randint(1, 10)
-                st.toast(f"Você rolou {roll}!")
-                st.session_state.game_state["roll_result"] = {"total": roll}
+            st.warning(f"🎲 Rolagem necessária: **{req.get('skill')}** [{req.get('attr', 'FOR')}] (CD {req.get('dc')})")
+            if st.button("Rolar D20"):
+                roll = random.randint(1, 20)
+                st.toast(f"Você rolou {roll} no D20!")
+                st.session_state.game_state["roll_result"] = {"d20": roll}
                 st.session_state.game_state["current_input"] = "Continuar após rolagem"
                 
                 with st.spinner("Avaliador de Testes calculando..."):

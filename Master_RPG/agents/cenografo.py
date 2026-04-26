@@ -1,5 +1,6 @@
 from state import GameState
 from llm import get_llm
+import re
 
 def cenografo_node(state: GameState) -> GameState:
     """
@@ -12,14 +13,15 @@ def cenografo_node(state: GameState) -> GameState:
     lore = state.get("world_lore", "")
     current_loc = state.get("current_location", "um local desconhecido")
     
-    # Busca os detalhes dos NPCs presentes na cena
     scene_npcs_data = []
     if state.get("current_scene_npcs"):
         for npc_id in state["current_scene_npcs"]:
             if npc_id in state.get("active_npcs", {}):
-                scene_npcs_data.append(state["active_npcs"][npc_id])
+                n_data = state["active_npcs"][npc_id]
+                clean_name = re.sub(r'\(.*?\)', '', n_data['nome']).strip()
+                scene_npcs_data.append(f"- {clean_name} ({n_data['tipo']}): {n_data['historia']}")
     
-    npcs_str = "\n".join([f"- {n['nome']} ({n['tipo']}): {n['historia']}" for n in scene_npcs_data])
+    npcs_str = "\n".join(scene_npcs_data)
     
     prompt = f"""
     Você é o Cenógrafo e Narrador do RPG.
@@ -38,11 +40,17 @@ def cenografo_node(state: GameState) -> GameState:
     4. NUNCA invente diálogos para {char_name}. Se {char_name} quiser falar, o JOGADOR escreverá isso no chat.
     
     TAREFA:
-    - Narre o ambiente (clima, sons, cheiros).
-    - Narre a presença e comportamento dos NPCs listados.
-    - O GANCHO: O encerramento DEVE ser um evento externo que force {char_name} a agir. Termine com "O que você faz?"
+    - Narre o ambiente (clima, sons, cheiros) de forma breve.
+    - Narre a presença e comportamento dos NPCs listados. (NUNCA cite os metadados técnicos como "(npc_02)", use apenas os nomes de forma natural).
+    - INCIDENTE INCITANTE: Imediatamente introduza a TRAMA PRINCIPAL ou a QUEST INICIAL. Algo perigoso e urgente DEVE acontecer e ATINGIR DIRETAMENTE o herói {char_name}. O herói NÃO PODE ser um mero espectador; o perigo ou mistério deve envolvê-lo de forma INEVITÁVEL (ex: um artefato misterioso cai em suas mãos, ele é atacado de surpresa, a magia atinge a sua mesa, ou o alvo principal olha diretamente para ele exigindo algo).
+    - O GANCHO: O encerramento DEVE forçar {char_name} a tomar uma decisão de sobrevivência ou ação imediata. Termine com "O que você faz?"
     
-    REGRA DE DIÁLOGO OBRIGATÓRIA: Use aspas duplas ("...") e tags [VOICE:...] para NPCs.
+    REGRA DE VOZ DOS NPCs (DETERMINÍSTICA):
+    Sempre que QUALQUER personagem falar (NPCs, monstros, criaturas), você DEVE colocar a tag da voz imediatamente ANTES da abertura das aspas. 
+    - Aliados/Neutros: pt-PT-DuarteNeural (Masc) ou pt-BR-ThalitaNeural (Fem)
+    - Inimigos/Monstros (mesmo sem gênero definido): pt-PT-DuarteNeural (Voz Grave/Masc) ou pt-PT-RaquelNeural (Fem)
+    - NUNCA use pt-BR-AntonioNeural para NPCs. NENHUMA fala pode ficar sem a tag [VOICE:...].
+    EXEMPLO OBRIGATÓRIO: [VOICE:pt-PT-DuarteNeural] "Encontrei você!" sussurra a criatura sombria.
     """
     
     response = llm.invoke(prompt)

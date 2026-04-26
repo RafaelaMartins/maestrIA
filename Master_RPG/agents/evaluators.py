@@ -46,10 +46,20 @@ def mestre_geral_node(state: GameState) -> GameState:
     4. EXEMPLO RUIM: "Findariel agradece e sai da taverna." (PROIBIDO)
     5. EXEMPLO BOM: "O barman acena com a cabeça. As portas da taverna rangem conforme {state.get('char_name')} se retira para a rua noturna." (CORRETO)
     
+    REGRA DE VOZ DOS NPCs (DETERMINÍSTICA):
+    Sempre que um NPC falar (texto entre aspas), você DEVE colocar a tag da voz dele imediatamente ANTES da abertura das aspas. Use as vozes fornecidas no contexto. Se for um NPC sem voz listada, escolha uma das seguintes:
+    - Aliados/Neutros: pt-PT-DuarteNeural (Masc) ou pt-BR-ThalitaNeural (Fem)
+    - Inimigos/Monstros: pt-PT-DuarteNeural (Masc) ou pt-PT-RaquelNeural (Fem)
+    - NUNCA use pt-BR-AntonioNeural para NPCs (voz exclusiva do narrador).
+    EXEMPLO OBRIGATÓRIO: [VOICE:pt-BR-ThalitaNeural] "Cuidado com isso!" avisa a maga.
+    
     O herói {state.get('char_name')} acabou de tentar: {state.get('current_input')}.
     Narre o resultado físico e a reação dos NPCs. 
     
-    IMPORTANTE - O GANCHO: O encerramento DEVE ser um evento ou fala de NPC que force uma decisão. Termine com "O que você faz?"
+    REGRA DE MISTÉRIO DE NPCs:
+    Você PODE revelar o nome de NPCs novos se fizer sentido o herói já conhecê-los de vista. CONTUDO, mantenha uma proporção: para cada 2 NPCs conhecidos, faça 1 ser totalmente ENIGMÁTICO. Para NPCs enigmáticos, oculte o nome na narração e refira-se a eles apenas por características visuais (ex: "O homem encapuzado", "A elfa com a cicatriz") até que eles decidam se apresentar.
+    
+    IMPORTANTE - O GANCHO: O encerramento DEVE envolver o jogador DIRETAMENTE. Faça com que os acontecimentos afetem o herói: um NPC olha diretamente para ele e faz uma pergunta, algo cai em sua direção, ou um perigo surge subitamente. Termine SEMPRE com "O que você faz?" ou "Como você reage?"
     """
     response = llm.invoke(prompt)
     
@@ -81,7 +91,17 @@ def avaliador_acoes_node(state: GameState) -> GameState:
     Narre APENAS como o cenário e os NPCs reagem a isso. 
     EXEMPLO: Se o jogador diz "Vou para a loja", você narra: "As ruas de Novaria estão úmidas. A placa da loja de facas balança ao vento logo adiante." (E NÃO: "Você caminha até a loja").
     
-    IMPORTANTE - O GANCHO: Termine com "O que você faz?"
+    REGRA DE VOZ DOS NPCs (DETERMINÍSTICA):
+    Sempre que um NPC falar (texto entre aspas), você DEVE colocar a tag da voz dele imediatamente ANTES da abertura das aspas. Use as vozes fornecidas no contexto. Se for um NPC sem voz listada, escolha uma das seguintes:
+    - Aliados/Neutros: pt-PT-DuarteNeural (Masc) ou pt-BR-ThalitaNeural (Fem)
+    - Inimigos/Monstros: pt-PT-DuarteNeural (Masc) ou pt-PT-RaquelNeural (Fem)
+    - NUNCA use pt-BR-AntonioNeural para NPCs (voz exclusiva do narrador).
+    EXEMPLO OBRIGATÓRIO: [VOICE:pt-BR-ThalitaNeural] "Não vá por ali!" grita Elyria.
+    
+    REGRA DE MISTÉRIO DE NPCs:
+    Você PODE revelar o nome de NPCs novos se fizer sentido o herói já conhecê-los. CONTUDO, em média, faça 1 a cada 3 NPCs ser ENIGMÁTICO. Para os enigmáticos, oculte o nome e use apenas características visuais (ex: "A figura sombria") até que decidam se apresentar.
+    
+    IMPORTANTE - O GANCHO: O encerramento DEVE envolver o jogador DIRETAMENTE. Faça com que os acontecimentos afetem o herói de forma ativa ou crie um perigo imediato. Termine SEMPRE com "O que você faz?" ou "Como você reage?"
     """
     response = llm.invoke(prompt)
     
@@ -109,18 +129,26 @@ def avaliador_testes_node(state: GameState) -> GameState:
         
     # Se o dado FOI rolado
     llm = get_llm()
-    roll = state["roll_result"]["total"]
+    roll_d20 = state["roll_result"]["d20"]
     dc = state["roll_details"]["dc"]
-    diff = roll - dc
+    attr_name = state["roll_details"].get("attr", "FOR")
     
-    if diff >= 3:
-        resultado_str = "SUCESSO CRÍTICO/ESPETACULAR"
+    # Busca o valor do atributo, se não existir, é 0
+    attr_val = 0
+    if state.get("char_data") and state["char_data"].get("attributes"):
+        attr_val = state["char_data"]["attributes"].get(attr_name, 0)
+        
+    total_roll = roll_d20 + attr_val
+    diff = total_roll - dc
+    
+    if roll_d20 == 20:
+        resultado_str = "SUCESSO CRÍTICO/ESPETACULAR (20 Natural!)"
+    elif roll_d20 == 1:
+        resultado_str = "FALHA CRÍTICA/DESASTROSA (1 Natural!)"
     elif diff >= 0:
         resultado_str = "SUCESSO"
-    elif diff >= -3:
-        resultado_str = "FALHA SIMPLES"
     else:
-        resultado_str = "FALHA CRÍTICA/DESASTROSA"
+        resultado_str = "FALHA SIMPLES"
         
     recent_msgs = state.get("messages", [])[-3:]
     context = "\n".join([f"{m['role']}: {m['content']}" for m in recent_msgs])
@@ -141,8 +169,15 @@ def avaliador_testes_node(state: GameState) -> GameState:
        - Se for SUCESSO: Narre ele conseguindo o que queria com competência e o impacto imediato no inimigo.
        - Se for FALHA SIMPLES: Narre o inimigo desviando, bloqueando ou a situação fugindo levemente do controle.
        - Se for FALHA CRÍTICA/DESASTROSA: Narre uma CATASTROFE (arma cai no chão, tropeça, piora tudo).
+       
+    REGRA DE VOZ DOS NPCs (DETERMINÍSTICA):
+    Sempre que um NPC falar (texto entre aspas), você DEVE colocar a tag da voz dele imediatamente ANTES da abertura das aspas. Use as vozes fornecidas no contexto. Se for um NPC sem voz listada, escolha uma das seguintes:
+    - Aliados/Neutros: pt-PT-DuarteNeural (Masc) ou pt-BR-ThalitaNeural (Fem)
+    - Inimigos/Monstros: pt-PT-DuarteNeural (Masc) ou pt-PT-RaquelNeural (Fem)
+    - NUNCA use pt-BR-AntonioNeural para NPCs (voz exclusiva do narrador).
+    EXEMPLO OBRIGATÓRIO: [VOICE:pt-PT-DuarteNeural] "Argh! Meu braço!" o bandido berra.
     
-    IMPORTANTE - O GANCHO FINAL: O encerramento da sua narrativa nunca pode ser passivo. Se a ameaça foi neutralizada ou se o teste acabou, não pare por aí! O que acontece em seguida? Um item misterioso cai do inimigo morto? O guarda chega? A pessoa que ele salvou diz algo vital? SEMPRE jogue a história para frente com um evento, fala ou mistério no final que obrigue o jogador a agir. Termine SEMPRE o texto com a pergunta explícita: "O que você faz?"
+    IMPORTANTE - O GANCHO FINAL: O encerramento da sua narrativa nunca pode ser passivo ou distante. Crie uma consequência direta para o herói: o monstro o encara com ódio, um teto ameaça desabar sobre sua cabeça, ou uma revelação chocante é dita olhando em seus olhos. SEMPRE jogue a história para frente exigindo reação. Termine SEMPRE o texto com: "O que você faz?" ou "Como você reage?"
     
     REGRA MÁXIMA ABSOLUTA: VOCÊ NUNCA ASSUME O QUE O PERSONAGEM {state.get('char_name')} DIZ OU FAZ APÓS O RESULTADO. É EXPRESSAMENTE PROIBIDO inventar falas, pensamentos ou ações para o jogador. O jogador tem 100% de autonomia. NÃO CONFUNDA o herói com os NPCs.
     
@@ -153,7 +188,9 @@ def avaliador_testes_node(state: GameState) -> GameState:
     
     if "messages" not in state or state["messages"] is None:
         state["messages"] = []
-    state["messages"].append({"role": "assistant", "content": f"🎲 **Resultado:** {roll} vs CD {dc}\n\n{response.content}"})
+    
+    msg_resultado = f"🎲 **Resultado:** {roll_d20} (d20) + {attr_val} ({attr_name}) = {total_roll} vs CD {dc}"
+    state["messages"].append({"role": "assistant", "content": f"{msg_resultado}\n\n{response.content}"})
     state["requires_roll"] = False # Reset
     state["roll_result"] = None
     state["next_node"] = "END"

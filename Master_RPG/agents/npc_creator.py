@@ -19,10 +19,10 @@ def npc_creator_node(state: GameState) -> GameState:
     {{
         "id": "npc_1",
         "nome": "Nome",
-        "genero": "Masculino|Feminino",
-        "voz_escolhida": "pt-BR-ThalitaMultilingualNeural|pt-PT-DuarteNeural|pt-BR-FranciscaNeural",
+        "genero": "Masculino ou Feminino (NUNCA os dois)",
+        "voz_escolhida": "pt-BR-ThalitaNeural (Fem Aliada) | pt-PT-DuarteNeural (Masc) | pt-PT-RaquelNeural (Fem Inimiga) | pt-BR-FranciscaNeural (Fem Neutra)",
         "tipo": "Inimigo|Amigo|Informante",
-        "dificuldade": "Fácil|Médio|Difícil",
+        "dificuldade": "Alta (para aliados imortais e chefes) | Média | Baixa (capangas/comuns)",
         "objetivo": "O que ele quer",
         "pontos_fortes": "Força, magia, etc",
         "pontos_fracos": "Fraquezas",
@@ -30,8 +30,9 @@ def npc_creator_node(state: GameState) -> GameState:
     }}
     
     DICA DE VOZ:
-    - Para Mulheres: pt-BR-ThalitaMultilingualNeural ou pt-BR-FranciscaNeural.
-    - Para Homens: pt-PT-DuarteNeural (Sotaque lusitano para diferenciar do narrador).
+    - Aliados ou Neutros: Feminino (pt-BR-ThalitaNeural ou pt-BR-FranciscaNeural), Masculino (pt-PT-DuarteNeural).
+    - Inimigos ou Monstros: Feminino (pt-PT-RaquelNeural), Masculino (pt-PT-DuarteNeural).
+    - NUNCA use pt-BR-AntonioNeural.
     """
     
     response = llm.invoke(prompt)
@@ -43,11 +44,14 @@ def npc_creator_node(state: GameState) -> GameState:
             # Validação de Voz vs Gênero (Garantia de imersão)
             genero = npc_data.get("genero", "Masculino")
             voz = npc_data.get("voz_escolhida", "pt-PT-DuarteNeural")
+            tipo = npc_data.get("tipo", "Neutro")
             
-            if genero == "Feminino" and "Duarte" in voz:
-                npc_data["voz_escolhida"] = "pt-BR-ThalitaMultilingualNeural"
-            elif genero == "Masculino" and ("Thalita" in voz or "Francisca" in voz):
-                npc_data["voz_escolhida"] = "pt-PT-DuarteNeural"
+            if genero == "Feminino":
+                if "Duarte" in voz or "Antonio" in voz:
+                    npc_data["voz_escolhida"] = "pt-PT-RaquelNeural" if tipo == "Inimigo" else "pt-BR-ThalitaNeural"
+            else:
+                if "Thalita" in voz or "Raquel" in voz or "Francisca" in voz:
+                    npc_data["voz_escolhida"] = "pt-PT-DuarteNeural"
                 
             if "active_npcs" not in state:
                 state["active_npcs"] = {}
@@ -104,10 +108,14 @@ def populador_cena_node(state: GameState) -> GameState:
                     # Correção de Voz vs Gênero no pool também
                     gen = npc.get("genero", "Masculino")
                     v = npc.get("voz_escolhida", "pt-PT-DuarteNeural")
-                    if gen == "Feminino" and "Duarte" in v:
-                        npc["voz_escolhida"] = "pt-BR-ThalitaMultilingualNeural"
-                    elif gen == "Masculino" and ("Thalita" in v or "Francisca" in v):
-                        npc["voz_escolhida"] = "pt-PT-DuarteNeural"
+                    tipo_npc = npc.get("tipo", "Neutro")
+                    
+                    if gen == "Feminino":
+                        if "Duarte" in v or "Antonio" in v:
+                            npc["voz_escolhida"] = "pt-PT-RaquelNeural" if tipo_npc == "Inimigo" else "pt-BR-ThalitaNeural"
+                    else:
+                        if "Thalita" in v or "Raquel" in v or "Francisca" in v:
+                            npc["voz_escolhida"] = "pt-PT-DuarteNeural"
                         
                     state["active_npcs"][npc["id"]] = npc
             

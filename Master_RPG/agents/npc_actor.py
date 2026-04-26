@@ -53,7 +53,7 @@ def npc_actor_node(state: GameState) -> GameState:
     - EXEMPLO BOM: "[VOICE:...] "Olá!" - diz o NPC, mantendo o olhar fixo em {state.get('char_name')}." (CORRETO)
     
     TAREFA:
-    1. FALA DO NPC: Use aspas ("...") e a tag [VOICE:{npc_data.get('voz_escolhida')}].
+    1. FALA DO NPC: Use aspas ("...") e coloque a tag [VOICE:{npc_data.get('voz_escolhida')}] imediatamente ANTES da abertura das aspas. Exemplo: [VOICE:{npc_data.get('voz_escolhida')}] "Fala..."
     2. REAÇÃO FÍSICA DO NPC: Descreva o que o NPC faz em terceira pessoa.
     3. GANCHO: Termine com "O que você faz?" ou "O que você responde?"
     """
