@@ -20,6 +20,8 @@ class GameState(TypedDict):
     world_lore: str
     main_goal: str
     current_plot_stage: int
+    global_npc_pool: List[dict] # Pool of 10 pre-generated NPCs
+    current_scene_npcs: List[str] # IDs of NPCs currently in the room
     
     # Internal Routing State
     next_node: str # Tells the orchestrator where to go next

@@ -5,11 +5,12 @@ import json
 import re
 
 # Import agents
-from agents.npc_creator import npc_creator_node
+from agents.npc_creator import npc_creator_node, populador_cena_node
 from agents.npc_actor import npc_actor_node
 from agents.evaluators import avaliador_acoes_node, avaliador_testes_node, mestre_geral_node
 from agents.roteirista import roteirista_node, world_updater_node
 from agents.cenografo import cenografo_node
+from agents.guardrails import guardrail_autoplay_node
 
 def orquestrador_router(state: GameState) -> GameState:
     """
@@ -107,13 +108,14 @@ def finalize_turn(state: GameState) -> str:
     # Agente do Mundo: Atualiza o mundo a cada 5 turnos
     if state.get("turn_count", 0) > 0 and state.get("turn_count", 0) % 5 == 0:
         return "world_updater"
-    return END
+    return "guardrail_autoplay"
 
 def build_graph():
     builder = StateGraph(GameState)
     
     # Adicionando os nós
     builder.add_node("roteirista", roteirista_node)
+    builder.add_node("populador_cena", populador_cena_node)
     builder.add_node("orquestrador", orquestrador_router)
     builder.add_node("avaliador_acoes", avaliador_acoes_node)
     builder.add_node("avaliador_testes", avaliador_testes_node)
@@ -121,12 +123,14 @@ def build_graph():
     builder.add_node("mestre_geral", mestre_geral_node)
     builder.add_node("npc_creator", npc_creator_node)
     builder.add_node("npc_actor", npc_actor_node)
+    builder.add_node("guardrail_autoplay", guardrail_autoplay_node)
     builder.add_node("world_updater", world_updater_node)
     
     # Fluxo Base
     builder.set_entry_point("roteirista")
     
-    builder.add_edge("roteirista", "orquestrador")
+    builder.add_edge("roteirista", "populador_cena")
+    builder.add_edge("populador_cena", "orquestrador")
     builder.add_conditional_edges("orquestrador", router_condition)
     
     # Routing out of creation nodes

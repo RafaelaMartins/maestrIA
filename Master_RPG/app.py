@@ -139,13 +139,24 @@ if st.session_state.game_started:
                                 audio_path = "temp_voice.mp3"
                                 
                                 npc_voice = None
+                                known_voices = {}
+                                
+                                if "active_npcs" in st.session_state.game_state:
+                                    for npc_id, data in st.session_state.game_state["active_npcs"].items():
+                                        if data.get("nome") and data.get("voz_escolhida"):
+                                            known_voices[data["nome"]] = data["voz_escolhida"]
+                                
                                 interacting_npc_id = st.session_state.game_state.get("interacting_npc")
                                 if interacting_npc_id and "active_npcs" in st.session_state.game_state:
                                     npc_data = st.session_state.game_state["active_npcs"].get(interacting_npc_id, {})
                                     npc_voice = npc_data.get("voz_escolhida")
                                 
-                                generate_tts_audio(msg["content"], audio_path, npc_voice)
-                                st.audio(audio_path, format="audio/mp3", autoplay=True)
+                                generate_tts_audio(msg["content"], audio_path, npc_voice, known_voices)
+                                
+                                # Lê o arquivo como bytes para evitar erro de MediaFileHandler do Streamlit
+                                with open(audio_path, "rb") as f:
+                                    audio_bytes = f.read()
+                                st.audio(audio_bytes, format="audio/mp3", autoplay=True)
                                 st.session_state.last_audio_played_idx = idx
 
     # Action Area

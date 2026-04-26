@@ -58,24 +58,21 @@ class CharacterParser:
 
         return {"name": "Aventureiro", "attributes": {"FOR":10, "DES":10, "CON":10, "INT":10, "SAB":10, "CAR":10}}
 
-async def _generate_audio_async(text: str, output_file: str, npc_voice: str = None):
+async def _generate_audio_async(text: str, output_file: str, default_npc_voice: str = None, known_voices: dict = None):
+    # known_voices: { "Nome": "Voz" }
     narrator_voice = "pt-BR-AntonioNeural"
-    female_voice = "pt-BR-ThalitaMultilingualNeural"
-    male_voice = "pt-PT-DuarteNeural"
-    
-    # Se não for passado um voice id específico, tentamos inferir
-    default_npc_voice = npc_voice if npc_voice else female_voice
     
     # Limpa markdown e emojis
     clean_text = re.sub(r'🎲.*?\n', '', text) 
     clean_text = re.sub(r'\*\*(.*?)\*\*', r'\1', clean_text)
     clean_text = re.sub(r'_(.*?)_', r'\1', clean_text)
     
-    # Fatiar por aspas ("...") ou tags [VOICE:...]
-    # Regex flexível para capturar [VOICE:XYZ] "Texto" (com ou sem espaço)
-    parts = re.split(r'(\[VOICE:.*?\]\s*".*?"|".*?")', clean_text)
+    # Divide em partes de narração e falas
+    parts = re.split(r'("[^"]*")', clean_text)
     
     temp_files = []
+    last_narration = ""
+    
     for i, part in enumerate(parts):
         part = part.strip()
         if not part:
@@ -84,48 +81,61 @@ async def _generate_audio_async(text: str, output_file: str, npc_voice: str = No
         voice = narrator_voice
         speech_text = part
         
-        # Detecta Tag de voz: [VOICE:Thalita] "..."
-        tag_match = re.match(r'\[VOICE:(.*?)\]\s*"(.*?)"', part)
-        if tag_match:
-            voice_key = tag_match.group(1).strip()
-            speech_text = tag_match.group(2).strip()
-            # Mapeamento
-            if "Thalita" in voice_key: voice = female_voice
-            elif "Francisca" in voice_key: voice = "pt-BR-FranciscaNeural"
-            elif "Duarte" in voice_key: voice = male_voice
-            elif "Antonio" in voice_key: voice = narrator_voice
-        elif part.startswith('"') and part.endswith('"'):
-            # Aspas simples sem tag
-            voice = default_npc_voice
+        if part.startswith('"'):
+            # É fala - NUNCA PODE SER ANTONIO
+            npc_voice_to_use = default_npc_voice
+            
+            if known_voices:
+                for name, v in known_voices.items():
+                    if name.lower() in last_narration.lower():
+                        npc_voice_to_use = v
+                        break
+            
+            # Heurística de gênero se não achou nome ou voice id específico
+            if not npc_voice_to_use or npc_voice_to_use == narrator_voice:
+                if any(ind in last_narration.lower() for ind in ["ela ", " a ", "uma ", "feiticeira", "guerreira", "mira", "lady"]):
+                    voice = "pt-BR-ThalitaMultilingualNeural"
+                elif any(ind in last_narration.lower() for ind in ["ele ", " o ", "um ", "barman", "guarda", "homem", "mestre"]):
+                    voice = "pt-PT-DuarteNeural"
+                else:
+                    voice = "pt-BR-ThalitaMultilingualNeural" # Fallback feminino
+            else:
+                voice = npc_voice_to_use
+            
             speech_text = part.strip('"')
         else:
-            # É narração - LIMPA qualquer tag residual que o LLM possa ter deixado fora do lugar
-            speech_text = re.sub(r'\[VOICE:.*?\]', '', part).strip()
+            # É narração - SEMPRE ANTONIO
+            voice = narrator_voice
+            last_narration = part[-60:]
+            speech_text = re.sub(r'\[VOICE:.*?\]', '', part, flags=re.IGNORECASE).strip()
+            speech_text = re.sub(r'\[VOZ:.*?\]', '', speech_text, flags=re.IGNORECASE).strip()
             
         if not speech_text.strip():
             continue
             
         temp_file = f"temp_chunk_{i}.mp3"
-        communicate = edge_tts.Communicate(speech_text, voice)
-        await communicate.save(temp_file)
-        temp_files.append(temp_file)
-        
-    # Concatena os MP3s
+        try:
+            communicate = edge_tts.Communicate(speech_text, voice)
+            await communicate.save(temp_file)
+            temp_files.append(temp_file)
+        except Exception as e:
+            print(f"Erro no edge-tts chunk {i}: {e}")
+
+    # Concatena
     with open(output_file, 'wb') as outfile:
         for f in temp_files:
             try:
                 with open(f, 'rb') as infile:
                     outfile.write(infile.read())
                 os.remove(f)
-            except Exception as e:
-                print(f"Erro concatenando audio: {e}")
+            except:
+                pass
 
-def generate_tts_audio(text: str, output_file: str, npc_voice: str = None):
-    # Roda o gerador assíncrono do edge-tts
+def generate_tts_audio(text, output_file, voice=None, known_voices=None):
     try:
-        loop = asyncio.get_event_loop()
-    except RuntimeError:
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
-        
-    loop.run_until_complete(_generate_audio_async(text, output_file, npc_voice))
+        loop.run_until_complete(_generate_audio_async(text, output_file, voice, known_voices))
+        loop.close()
+    except Exception as e:
+        print(f"Erro fatal no TTS: {e}")

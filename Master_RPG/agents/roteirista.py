@@ -1,5 +1,7 @@
 from state import GameState
 from llm import get_llm
+import json
+import re
 
 def roteirista_node(state: GameState) -> GameState:
     """
@@ -17,18 +19,51 @@ def roteirista_node(state: GameState) -> GameState:
     
     Seja extremamente criativo. Crie um mistério, uma ameaça ou uma missão que fuja de clichês básicos.
     
-    Formato desejado (Gere textos dinâmicos e originais):
-    MUNDO: [Nome do mundo e uma descrição vívida da atmosfera atual]
-    TRAMA PRINCIPAL: [Qual é o grande mistério, vilão ou evento catastrófico que move a história?]
-    NPCs CHAVE: [Crie 2 ou 3 NPCs originais que guardam segredos sobre a Trama Principal. Descreva o nome deles e como eles se ligam à trama]
-    GANCHOS INICIAIS (PISTAS): [Crie 2 ou 3 rumores, itens estranhos ou eventos que devem acontecer na Taverna Inicial para "puxar" o jogador para a Trama Principal]
+    MUNDO: [Nome e atmosfera]
+    TRAMA PRINCIPAL: [O grande mistério ou objetivo final]
+    
+    ESTRUTURA DE QUESTS (O CICLO DO HERÓI):
+    1. QUEST INICIAL: [Objetivo X, Y e Z que o jogador deve cumprir para o NPC inicial]
+    2. RECOMPENSA: [O que ele ganha ao voltar para o NPC após os desafios]
+    3. GANCHO PARA PRÓXIMA QUEST: [Como a vitória na Quest 1 leva à Quest 2]
+    
+    POOL_NPC_JSON: [Gere 10 NPCs, garantindo que pelo menos 2 sejam 'Quest Givers' com objetivos ligados à estrutura acima]
+    ... (formato JSON já estabelecido)
+    {{
+        "npcs": [
+            {{
+                "id": "npc_X",
+                "nome": "Nome",
+                "genero": "Masculino|Feminino",
+                "voz_escolhida": "pt-BR-ThalitaMultilingualNeural|pt-PT-DuarteNeural|pt-BR-FranciscaNeural",
+                "tipo": "Amigo|Neutro|Inimigo|Indiferente",
+                "objetivo": "O que ele quer",
+                "historia": "Background curto"
+            }},
+            ...
+        ]
+    }}
     """
     
     response = llm.invoke(prompt)
     
-    # Store in hidden state
-    state["world_lore"] = response.content
+    # Extrair Lore e Pool
+    content = response.content
+    lore_parts = content.split("POOL_NPC_JSON:")
+    
+    state["world_lore"] = lore_parts[0].strip()
     state["main_goal"] = "Completar a jornada estabelecida pelo roteirista."
+    
+    if len(lore_parts) > 1:
+        try:
+            json_match = re.search(r"\{.*\}", lore_parts[1], re.DOTALL)
+            if json_match:
+                pool_data = json.loads(json_match.group(0))
+                state["global_npc_pool"] = pool_data.get("npcs", [])
+                print(f"    Casting completo: {len(state['global_npc_pool'])} NPCs prontos.")
+        except Exception as e:
+            print(f"    Erro ao gerar Pool de NPCs: {e}")
+            state["global_npc_pool"] = []
     
     return state
 

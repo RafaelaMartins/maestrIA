@@ -12,28 +12,37 @@ def cenografo_node(state: GameState) -> GameState:
     lore = state.get("world_lore", "")
     current_loc = state.get("current_location", "um local desconhecido")
     
+    # Busca os detalhes dos NPCs presentes na cena
+    scene_npcs_data = []
+    if state.get("current_scene_npcs"):
+        for npc_id in state["current_scene_npcs"]:
+            if npc_id in state.get("active_npcs", {}):
+                scene_npcs_data.append(state["active_npcs"][npc_id])
+    
+    npcs_str = "\n".join([f"- {n['nome']} ({n['tipo']}): {n['historia']}" for n in scene_npcs_data])
+    
     prompt = f"""
-    Você é o Agente Cenógrafo do RPG.
-    Mundo: {lore}
-    O personagem {char_name} acaba de entrar em: {current_loc}.
+    Você é o Cenógrafo e Narrador do RPG.
+    Local: {current_loc}
+    Lore do Mundo: {lore}
+    NPCs PRESENTES: {npcs_str}
     
-    Descreva o ambiente de forma cinematográfica, épica e profunda. Dê vida ao cenário com detalhes únicos (iluminação, cheiros, atmosfera densa).
+    DIRETRIZ DE NARRATIVA: Sua missão é conduzir o herói {char_name} para a QUEST PRINCIPAL.
     
-    Elementos Obrigatórios:
-    - O que {char_name} vê, ouve e sente de forma vívida.
-    - Figuras INTRIGANTES e ESPECÍFICAS presentes no local (ex: não descreva uma multidão genérica, descreva "uma guerreira de armadura rachada contando moedas", "um velho cego que parece saber demais" ou "uma feiticeira misteriosa que entra repentinamente").
+    REGRA MÁXIMA ABSOLUTA (SISTEMA DE SEGURANÇA):
+    1. VOCÊ É O MUNDO, NÃO O JOGADOR. É terminantemente PROIBIDO narrar qualquer ação, fala, pensamento ou sentimento de {char_name}.
+    2. NÃO use verbos onde {char_name} seja o sujeito (Ex: "Você percebe", "Findariel entra", "Findariel diz", "Findariel sente").
+    3. FOQUE 100% NAS REAÇÕES DO AMBIENTE E DOS NPCs.
+       - EXEMPLO RUIM (PROIBIDO): "Findariel entra na taverna e pergunta ao barman onde fica a loja."
+       - EXEMPLO BOM (CORRETO): "A taverna está barulhenta. O barman limpa um copo e olha na direção de {char_name}, aguardando uma palavra."
+    4. NUNCA invente diálogos para {char_name}. Se {char_name} quiser falar, o JOGADOR escreverá isso no chat.
     
-    IMPORTANTE - O GANCHO: O encerramento da sua narrativa deve SEMPRE focar em um EVENTO ESPECÍFICO E INTENSO que exija uma reação de {char_name}. Não use ganchos genéricos como "ouviu-se um barulho". Faça com que alguém interaja com ele, ou que um evento dramático comece na sua frente (ex: uma briga de espadas se inicia, a feiticeira misteriosa o encara e fala um enigma, etc). Termine SEMPRE o texto com a pergunta explícita: "O que você faz?"
+    TAREFA:
+    - Narre o ambiente (clima, sons, cheiros).
+    - Narre a presença e comportamento dos NPCs listados.
+    - O GANCHO: O encerramento DEVE ser um evento externo que force {char_name} a agir. Termine com "O que você faz?"
     
-    REGRA DE DIÁLOGO OBRIGATÓRIA: Se algum NPC falar em voz alta, a fala deve estar entre aspas duplas ("...") e PRECEDIDA por uma tag de voz para o sistema saber quem fala. Use:
-    - [VOICE:Thalita] para Mulheres.
-    - [VOICE:Duarte] para Homens.
-    Exemplo: A feiticeira o encara e diz: [VOICE:Thalita]"A luz ou a escuridão?"
-    
-    REGRA DE IMERSÃO: NUNCA use as palavras "jogador", "usuário", "personagens" ou "NPCs". Refira-se a ele sempre pelo nome ({char_name}) ou pronomes.
-    ATENÇÃO: A SUA RESPOSTA INTEIRA DEVE SER ESCRITA EM PORTUGUÊS DO BRASIL. NÃO USE NENHUMA PALAVRA EM INGLÊS (COMO "SUDDENLY").
-    
-    Responda diretamente com a narração (sem metalinguagem).
+    REGRA DE DIÁLOGO OBRIGATÓRIA: Use aspas duplas ("...") e tags [VOICE:...] para NPCs.
     """
     
     response = llm.invoke(prompt)
@@ -41,5 +50,5 @@ def cenografo_node(state: GameState) -> GameState:
     if "messages" not in state or state["messages"] is None:
         state["messages"] = []
     state["messages"].append({"role": "assistant", "content": response.content})
-    state["next_node"] = "END" # Returns to user
+    state["next_node"] = "END"
     return state

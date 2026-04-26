@@ -29,7 +29,8 @@ def npc_actor_node(state: GameState) -> GameState:
             "objetivo": "Desconhecido",
             "pontos_fortes": "Misterioso",
             "pontos_fracos": "Desconfiado",
-            "historia": "Alguém que o jogador acabou de encontrar."
+            "historia": "Alguém que o jogador acabou de encontrar.",
+            "voz_escolhida": "pt-BR-ThalitaMultilingualNeural"
         }
         
     recent_msgs = state.get("messages", [])[-3:]
@@ -39,25 +40,22 @@ def npc_actor_node(state: GameState) -> GameState:
     Você é o NPC: {npc_data.get('nome')}.
     
     Sua ficha:
-    - Tipo: {npc_data.get('tipo')}
     - Objetivo: {npc_data.get('objetivo')}
-    - Pontos Fortes: {npc_data.get('pontos_fortes')}
-    - Pontos Fracos: {npc_data.get('pontos_fracos')}
     - História: {npc_data.get('historia')}
     
-    Histórico recente da cena (leia com atenção para saber quem falou o quê):
-    {context}
+    Histórico recente: {context}
+    O Herói ({state.get('char_name')}) diz agora: "{state.get('current_input')}"
     
-    O Herói ({state.get('char_name')}) diz/faz agora: "{state.get('current_input')}"
+    REGRA MÁXIMA ABSOLUTA (NUNCA VIOLAR):
+    - NÃO narre nada que o herói {state.get('char_name')} faça ou diga.
+    - É EXPRESSAMENTE PROIBIDO inventar falas, movimentos ou sentimentos para o jogador.
+    - EXEMPLO RUIM: "[VOICE:...] "Olá!" - diz o NPC enquanto Findariel sorri." (PROIBIDO)
+    - EXEMPLO BOM: "[VOICE:...] "Olá!" - diz o NPC, mantendo o olhar fixo em {state.get('char_name')}." (CORRETO)
     
-    Instruções Rigorosas (Interpretação + Narração):
-    1. LÓGICA DO DIÁLOGO: Se no histórico você já ofereceu uma informação, não se repita. Reaja à última fala do jogador.
-    2. A FALA DO NPC (PRIMEIRA PESSOA): A fala do NPC deve estar ESTRITAMENTE entre aspas duplas ("...") e PRECEDIDA pela tag de voz. Use a tag: [VOICE:{npc_data.get('voz_escolhida', 'Thalita')}] antes da abertura das aspas. Nunca use travessão (-).
-       - Exemplo: [VOICE:{npc_data.get('voz_escolhida', 'Thalita')}]"Chamem-me de Gilded, jovem."
-    3. A NARRAÇÃO DO MESTRE (TERCEIRA PESSOA): FORA DAS ASPAS (e sem tags), você atua como o Mestre Narrador. Descreva o que o NPC faz fisicamente (em terceira pessoa) e como o ambiente reage.
-       - Exemplo: O homem dourado sorri e sai pela porta da taverna.
-    4. O GANCHO (NARRADOR): Como Narrador, conclua a cena com um objetivo claro. Termine SEMPRE com a pergunta explícita: "O que você faz?" ou "O que você responde?"
-    5. REGRA DE OURO: VOCÊ ESTÁ PROIBIDO de escrever os sentimentos, falas ou ações do herói {state.get('char_name')}. NUNCA jogue por ele!
+    TAREFA:
+    1. FALA DO NPC: Use aspas ("...") e a tag [VOICE:{npc_data.get('voz_escolhida')}].
+    2. REAÇÃO FÍSICA DO NPC: Descreva o que o NPC faz em terceira pessoa.
+    3. GANCHO: Termine com "O que você faz?" ou "O que você responde?"
     """
     
     response = llm.invoke(prompt)
