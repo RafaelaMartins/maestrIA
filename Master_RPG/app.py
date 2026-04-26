@@ -2,6 +2,7 @@ import streamlit as st
 import os
 import random
 import sys
+import re
 
 # FIX: Windows Event Loop Issue
 if sys.platform.startswith("win"):
@@ -31,7 +32,7 @@ if "game_state" not in st.session_state:
         "turn_count": 0,
         "char_name": "Aventureiro",
         "char_data": None,
-        "current_location": "A Taverna Inicial",
+        "current_location": "A Taverna do Sábio Sonolento",
         "active_npcs": {},
         "interacting_npc": None,
         "world_lore": "",
@@ -54,11 +55,11 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-st.title("🐉 Master_RPG (Multi-Agente)")
+st.title("🐉 MestrIA - The Role-Playing Game")
 
 # Sidebar - Ficha
 with st.sidebar:
-    st.header("🔊 Narração (TTS)")
+    st.header("🔊 Narração")
     voice_toggle = st.toggle("Habilitar Voz do Mestre", value=False)
     st.session_state.voice_enabled = voice_toggle
     
@@ -126,15 +127,24 @@ if st.session_state.game_started:
     for idx, msg in enumerate(st.session_state.game_state.get("messages", [])):
         if msg.get("content"):
             with st.chat_message(msg["role"]):
-                st.markdown(msg["content"])
+                # Limpa tags de voz do texto visível
+                display_text = re.sub(r'\[VOICE:.*?\]', '', msg["content"])
+                st.markdown(display_text)
                 
                 # Se for a última mensagem do assistente, e a voz estiver ligada, e ainda não tocou:
                 if msg["role"] == "assistant" and st.session_state.get("voice_enabled", False):
                     if idx == len(st.session_state.game_state["messages"]) - 1:
                         if st.session_state.last_audio_played_idx != idx:
-                            with st.spinner("Gerando voz..."):
+                            with st.spinner("Gerando vozes (Atores e Narrador)..."):
                                 audio_path = "temp_voice.mp3"
-                                generate_tts_audio(msg["content"], audio_path)
+                                
+                                npc_voice = None
+                                interacting_npc_id = st.session_state.game_state.get("interacting_npc")
+                                if interacting_npc_id and "active_npcs" in st.session_state.game_state:
+                                    npc_data = st.session_state.game_state["active_npcs"].get(interacting_npc_id, {})
+                                    npc_voice = npc_data.get("voz_escolhida")
+                                
+                                generate_tts_audio(msg["content"], audio_path, npc_voice)
                                 st.audio(audio_path, format="audio/mp3", autoplay=True)
                                 st.session_state.last_audio_played_idx = idx
 

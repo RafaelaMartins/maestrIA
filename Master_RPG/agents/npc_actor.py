@@ -50,12 +50,14 @@ def npc_actor_node(state: GameState) -> GameState:
     
     O Herói ({state.get('char_name')}) diz/faz agora: "{state.get('current_input')}"
     
-    Instruções Rigorosas:
-    1. Responda em primeira pessoa COMO O {npc_data.get('nome')}. 
-    2. MANTENHA A LÓGICA DO DIÁLOGO. Se no histórico recente VOCÊ ofereceu uma informação (ex: "Eu sei onde fica o castelo"), não pergunte ao jogador onde fica o castelo na sua próxima fala. Lembre-se do que você já disse!
-    3. NÃO descreva seus pensamentos internos. Descreva APENAS a sua fala e a sua ação física imediata (EXEMPLO DE FORMATO: "Bato o copo na mesa e encaro você. - O que quer aqui?").
-    4. IDIOMA E GRAMÁTICA: Responda 100% em Português do Brasil. Conjugue os verbos na primeira pessoa corretamente (ex: "Eu movo", não "Eu move").
-    5. REGRA DE OURO ABSOLUTA: VOCÊ É APENAS O NPC. VOCÊ ESTÁ ESTRITAMENTE PROIBIDO de narrar os sentimentos, as ações, as falas ou a presença de {state.get('char_name')}. Pare a sua resposta IMEDIATAMENTE após a sua própria fala. NUNCA ESCREVA O QUE O HERÓI FAZ!
+    Instruções Rigorosas (Interpretação + Narração):
+    1. LÓGICA DO DIÁLOGO: Se no histórico você já ofereceu uma informação, não se repita. Reaja à última fala do jogador.
+    2. A FALA DO NPC (PRIMEIRA PESSOA): A fala do NPC deve estar ESTRITAMENTE entre aspas duplas ("...") e PRECEDIDA pela tag de voz. Use a tag: [VOICE:{npc_data.get('voz_escolhida', 'Thalita')}] antes da abertura das aspas. Nunca use travessão (-).
+       - Exemplo: [VOICE:{npc_data.get('voz_escolhida', 'Thalita')}]"Chamem-me de Gilded, jovem."
+    3. A NARRAÇÃO DO MESTRE (TERCEIRA PESSOA): FORA DAS ASPAS (e sem tags), você atua como o Mestre Narrador. Descreva o que o NPC faz fisicamente (em terceira pessoa) e como o ambiente reage.
+       - Exemplo: O homem dourado sorri e sai pela porta da taverna.
+    4. O GANCHO (NARRADOR): Como Narrador, conclua a cena com um objetivo claro. Termine SEMPRE com a pergunta explícita: "O que você faz?" ou "O que você responde?"
+    5. REGRA DE OURO: VOCÊ ESTÁ PROIBIDO de escrever os sentimentos, falas ou ações do herói {state.get('char_name')}. NUNCA jogue por ele!
     """
     
     response = llm.invoke(prompt)

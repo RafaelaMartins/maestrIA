@@ -19,6 +19,8 @@ def npc_creator_node(state: GameState) -> GameState:
     {{
         "id": "npc_1",
         "nome": "Nome",
+        "genero": "Masculino|Feminino",
+        "voz_escolhida": "pt-BR-ThalitaMultilingualNeural|pt-PT-DuarteNeural|pt-BR-FranciscaNeural",
         "tipo": "Inimigo|Amigo|Informante",
         "dificuldade": "Fácil|Médio|Difícil",
         "objetivo": "O que ele quer",
@@ -26,6 +28,10 @@ def npc_creator_node(state: GameState) -> GameState:
         "pontos_fracos": "Fraquezas",
         "historia": "Background curto"
     }}
+    
+    DICA DE VOZ:
+    - Para Mulheres: pt-BR-ThalitaMultilingualNeural ou pt-BR-FranciscaNeural.
+    - Para Homens: pt-PT-DuarteNeural (Sotaque lusitano para diferenciar do narrador).
     """
     
     response = llm.invoke(prompt)

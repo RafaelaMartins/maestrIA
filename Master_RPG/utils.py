@@ -58,20 +58,69 @@ class CharacterParser:
 
         return {"name": "Aventureiro", "attributes": {"FOR":10, "DES":10, "CON":10, "INT":10, "SAB":10, "CAR":10}}
 
-async def _generate_audio_async(text: str, output_file: str, voice: str):
-    # Limpa markdown e emojis para a voz ficar mais natural
-    clean_text = re.sub(r'🎲.*?\n', '', text) # Remove a linha do dado
-    clean_text = re.sub(r'\*\*(.*?)\*\*', r'\1', clean_text) # Remove negrito
-    clean_text = re.sub(r'_(.*?)_', r'\1', clean_text) # Remove italico
+async def _generate_audio_async(text: str, output_file: str, npc_voice: str = None):
+    narrator_voice = "pt-BR-AntonioNeural"
+    female_voice = "pt-BR-ThalitaMultilingualNeural"
+    male_voice = "pt-PT-DuarteNeural"
     
-    communicate = edge_tts.Communicate(clean_text, voice)
-    await communicate.save(output_file)
-def generate_tts_audio(text: str, output_file: str, voice: str = "pt-BR-ThalitaMultilingualNeural"):
-    '''
-        voice: "pt-BR-AntonioNeural"
-        voice: "pt-BR-FranciscaNeural"
-        voice: "pt-BR-ThalitaMultilingualNeural"
-    '''
+    # Se não for passado um voice id específico, tentamos inferir
+    default_npc_voice = npc_voice if npc_voice else female_voice
+    
+    # Limpa markdown e emojis
+    clean_text = re.sub(r'🎲.*?\n', '', text) 
+    clean_text = re.sub(r'\*\*(.*?)\*\*', r'\1', clean_text)
+    clean_text = re.sub(r'_(.*?)_', r'\1', clean_text)
+    
+    # Fatiar por aspas ("...") ou tags [VOICE:...]
+    # Regex flexível para capturar [VOICE:XYZ] "Texto" (com ou sem espaço)
+    parts = re.split(r'(\[VOICE:.*?\]\s*".*?"|".*?")', clean_text)
+    
+    temp_files = []
+    for i, part in enumerate(parts):
+        part = part.strip()
+        if not part:
+            continue
+            
+        voice = narrator_voice
+        speech_text = part
+        
+        # Detecta Tag de voz: [VOICE:Thalita] "..."
+        tag_match = re.match(r'\[VOICE:(.*?)\]\s*"(.*?)"', part)
+        if tag_match:
+            voice_key = tag_match.group(1).strip()
+            speech_text = tag_match.group(2).strip()
+            # Mapeamento
+            if "Thalita" in voice_key: voice = female_voice
+            elif "Francisca" in voice_key: voice = "pt-BR-FranciscaNeural"
+            elif "Duarte" in voice_key: voice = male_voice
+            elif "Antonio" in voice_key: voice = narrator_voice
+        elif part.startswith('"') and part.endswith('"'):
+            # Aspas simples sem tag
+            voice = default_npc_voice
+            speech_text = part.strip('"')
+        else:
+            # É narração - LIMPA qualquer tag residual que o LLM possa ter deixado fora do lugar
+            speech_text = re.sub(r'\[VOICE:.*?\]', '', part).strip()
+            
+        if not speech_text.strip():
+            continue
+            
+        temp_file = f"temp_chunk_{i}.mp3"
+        communicate = edge_tts.Communicate(speech_text, voice)
+        await communicate.save(temp_file)
+        temp_files.append(temp_file)
+        
+    # Concatena os MP3s
+    with open(output_file, 'wb') as outfile:
+        for f in temp_files:
+            try:
+                with open(f, 'rb') as infile:
+                    outfile.write(infile.read())
+                os.remove(f)
+            except Exception as e:
+                print(f"Erro concatenando audio: {e}")
+
+def generate_tts_audio(text: str, output_file: str, npc_voice: str = None):
     # Roda o gerador assíncrono do edge-tts
     try:
         loop = asyncio.get_event_loop()
@@ -79,4 +128,4 @@ def generate_tts_audio(text: str, output_file: str, voice: str = "pt-BR-ThalitaM
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
         
-    loop.run_until_complete(_generate_audio_async(text, output_file, voice))
+    loop.run_until_complete(_generate_audio_async(text, output_file, npc_voice))

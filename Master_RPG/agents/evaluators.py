@@ -29,7 +29,9 @@ def mestre_geral_node(state: GameState) -> GameState:
     O personagem {state.get('char_name')} fez a ação: {state.get('current_input')}. 
     Narre a consequência imediata.
     
-    IMPORTANTE - O GANCHO: O encerramento da sua narrativa deve SEMPRE focar em um EVENTO ATIVO, UMA PISTA CLARA ou UMA AMEAÇA que puxe a história para frente. Não encerre de forma passiva (ex: "ele se pergunta o que fazer"). Faça algo acontecer no mundo que exija uma reação imediata de {state.get('char_name')} (ex: alguém esbarra nele na rua com um mapa, ele ouve um grito, ou percebe que está sendo seguido).
+    IMPORTANTE - O GANCHO: O encerramento da sua narrativa deve SEMPRE focar em um EVENTO ATIVO, UMA PISTA CLARA ou UMA AMEAÇA que puxe a história para frente. Não encerre de forma passiva (ex: "ele se pergunta o que fazer"). Faça algo acontecer no mundo que exija uma reação imediata de {state.get('char_name')} (ex: alguém esbarra nele na rua com um mapa, ele ouve um grito, ou percebe que está sendo seguido). Termine SEMPRE o texto com a pergunta explícita: "O que você faz?"
+    
+    REGRA DE DIÁLOGO OBRIGATÓRIA: Se algum NPC falar, use aspas duplas ("...") e a tag de voz [VOICE:Thalita] (mulher) ou [VOICE:Duarte] (homem) antes das aspas.
     
     REGRA DE IMERSÃO: NUNCA use a palavra "jogador" ou "usuário" no seu texto. Chame-o sempre de {state.get('char_name')}.
     REGRA DE OURO ABSOLUTA: VOCÊ É O MESTRE, NÃO O JOGADOR. VOCÊ ESTÁ ESTRITAMENTE PROIBIDO de escrever pensamentos, emoções, reações físicas ou falas do personagem {state.get('char_name')}. Pare a sua narrativa assim que o mundo ou NPC reagir. NUNCA ESCREVA POR ELE!
@@ -60,7 +62,9 @@ def avaliador_acoes_node(state: GameState) -> GameState:
     Esta é uma ação que não requer dados. Narre o que acontece com base APENAS nisso e no cenário. 
     Mantenha a coerência. Não invente batalhas do nada se não for o caso.
     
-    IMPORTANTE - O GANCHO: Nunca deixe a cena "morta" ou passiva. O encerramento da sua narrativa deve SEMPRE apresentar um elemento novo e intrigante no ambiente que direcione {state.get('char_name')} para o seu objetivo ou para um mistério (ex: ele repara em uma placa suspeita, encontra um item brilhante no chão, ou alguém bloqueia o seu caminho).
+    IMPORTANTE - O GANCHO: Nunca deixe a cena "morta" ou passiva. O encerramento da sua narrativa deve SEMPRE apresentar um elemento novo e intrigante no ambiente que direcione {state.get('char_name')} para o seu objetivo ou para um mistério (ex: ele repara em uma placa suspeita, encontra um item brilhante no chão, ou alguém bloqueia o seu caminho). Termine SEMPRE o texto com a pergunta explícita: "O que você faz?"
+    
+    REGRA DE DIÁLOGO OBRIGATÓRIA: Se algum NPC falar em voz alta na sua narração, a fala DEVE ESTAR ENTRE ASPAS DUPLAS ("..."). Nunca use travessão (-).
     
     REGRA DE IMERSÃO: NUNCA use a palavra "jogador" ou "usuário" no seu texto. Chame-o sempre de {state.get('char_name')}.
     REGRA DE OURO ABSOLUTA: VOCÊ É O MESTRE, NÃO O JOGADOR. VOCÊ ESTÁ ESTRITAMENTE PROIBIDO de escrever pensamentos, emoções, reações físicas ou falas do personagem {state.get('char_name')}. Pare a sua narrativa assim que o mundo ou NPC reagir à ação dele. NUNCA ESCREVA POR ELE!
@@ -124,7 +128,9 @@ def avaliador_testes_node(state: GameState) -> GameState:
        - Se for FALHA SIMPLES: Narre o inimigo desviando, bloqueando ou a situação fugindo levemente do controle.
        - Se for FALHA CRÍTICA/DESASTROSA: Narre uma CATASTROFE (arma cai no chão, tropeça, piora tudo).
     
-    IMPORTANTE - O GANCHO FINAL: O encerramento da sua narrativa nunca pode ser passivo. Se a ameaça foi neutralizada ou se o teste acabou, não pare por aí! O que acontece em seguida? Um item misterioso cai do inimigo morto? O guarda chega? A pessoa que ele salvou diz algo vital? SEMPRE jogue a história para frente com um evento, fala ou mistério no final que obrigue o jogador a agir.
+    IMPORTANTE - O GANCHO FINAL: O encerramento da sua narrativa nunca pode ser passivo. Se a ameaça foi neutralizada ou se o teste acabou, não pare por aí! O que acontece em seguida? Um item misterioso cai do inimigo morto? O guarda chega? A pessoa que ele salvou diz algo vital? SEMPRE jogue a história para frente com um evento, fala ou mistério no final que obrigue o jogador a agir. Termine SEMPRE o texto com a pergunta explícita: "O que você faz?"
+    
+    REGRA DE DIÁLOGO OBRIGATÓRIA: Se algum NPC falar em voz alta na sua narração, a fala DEVE ESTAR ENTRE ASPAS DUPLAS ("..."). Nunca use travessão (-).
     
     Mantenha a coerência estrita com a intenção original: "{state.get('current_input')}".
     

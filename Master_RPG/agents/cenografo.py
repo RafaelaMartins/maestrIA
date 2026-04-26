@@ -23,7 +23,12 @@ def cenografo_node(state: GameState) -> GameState:
     - O que {char_name} vê, ouve e sente de forma vívida.
     - Figuras INTRIGANTES e ESPECÍFICAS presentes no local (ex: não descreva uma multidão genérica, descreva "uma guerreira de armadura rachada contando moedas", "um velho cego que parece saber demais" ou "uma feiticeira misteriosa que entra repentinamente").
     
-    IMPORTANTE - O GANCHO: O encerramento da sua narrativa deve SEMPRE focar em um EVENTO ESPECÍFICO E INTENSO que exija uma reação de {char_name}. Não use ganchos genéricos como "ouviu-se um barulho". Faça com que alguém interaja com ele, ou que um evento dramático comece na sua frente (ex: uma briga de espadas se inicia, a feiticeira misteriosa o encara e fala um enigma, etc).
+    IMPORTANTE - O GANCHO: O encerramento da sua narrativa deve SEMPRE focar em um EVENTO ESPECÍFICO E INTENSO que exija uma reação de {char_name}. Não use ganchos genéricos como "ouviu-se um barulho". Faça com que alguém interaja com ele, ou que um evento dramático comece na sua frente (ex: uma briga de espadas se inicia, a feiticeira misteriosa o encara e fala um enigma, etc). Termine SEMPRE o texto com a pergunta explícita: "O que você faz?"
+    
+    REGRA DE DIÁLOGO OBRIGATÓRIA: Se algum NPC falar em voz alta, a fala deve estar entre aspas duplas ("...") e PRECEDIDA por uma tag de voz para o sistema saber quem fala. Use:
+    - [VOICE:Thalita] para Mulheres.
+    - [VOICE:Duarte] para Homens.
+    Exemplo: A feiticeira o encara e diz: [VOICE:Thalita]"A luz ou a escuridão?"
     
     REGRA DE IMERSÃO: NUNCA use as palavras "jogador", "usuário", "personagens" ou "NPCs". Refira-se a ele sempre pelo nome ({char_name}) ou pronomes.
     ATENÇÃO: A SUA RESPOSTA INTEIRA DEVE SER ESCRITA EM PORTUGUÊS DO BRASIL. NÃO USE NENHUMA PALAVRA EM INGLÊS (COMO "SUDDENLY").
